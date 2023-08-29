@@ -1,14 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 
 export const LoginScreen = () => {
-    return (
-        <View style={styles.container}>
-        <Text>Login Screen</Text>
-        <StatusBar style="auto" />
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <Text>Login Screen</Text>
+      <StatusBar style="auto" />
+    </View>
+  );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
