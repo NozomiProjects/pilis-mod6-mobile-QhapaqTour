@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 import { UserContext } from '../../contexts/UserContext';
 
 export const LoginScreen = () => {
@@ -17,14 +18,37 @@ export const LoginScreen = () => {
   const handleLogin = async () => {
     try {
       const response = await fakeAuthenticationAPI(email, password);
+
       if (response.success) {
-        setCurrentUser({ email }); // Actualizamos el contexto con los datos del usuario
+        setCurrentUser({ email: response.data.email }); // Aquí podrías actualizar con más datos
         navigation.navigate('Main');
       } else {
         Alert.alert('Error', 'Credenciales inválidas. Por favor, intenta nuevamente.');
       }
     } catch (error) {
       Alert.alert('Error', 'Hubo un error en la autenticación. Por favor, intenta nuevamente.');
+    }
+  };
+
+  const fakeAuthenticationAPI = async (email, password) => {
+    try {
+      const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+
+      if (response.status === 200) {
+        const users = response.data;
+        const authenticatedUser = users.find(user => user.email === email && user.username === password);
+
+        if (authenticatedUser) {
+          return { success: true, data: authenticatedUser };
+        } else {
+          return { success: false, error: 'Credenciales inválidas' };
+        }
+      } else {
+        return { success: false, error: 'Error en la API' };
+      }
+    } catch (error) {
+      console.error('Error durante la llamada a la API:', error);
+      return { success: false, error: 'Error en la API' };
     }
   };
 
