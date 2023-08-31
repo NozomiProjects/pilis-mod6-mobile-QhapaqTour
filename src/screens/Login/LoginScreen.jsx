@@ -16,41 +16,50 @@ export const LoginScreen = () => {
   };
 
   const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Por favor ingresa un correo electrónico y una contraseña.');
+      return;
+    }
     try {
-      const response = await fakeAuthenticationAPI(email, password);
+      const data = {
+        email,
+        password,
+      };
 
-      if (response.success) {
-        setCurrentUser({ email: response.data.email }); // Aquí podrías actualizar con más datos
+      console.log('Sending login request with data:', data); // Agregado para depuración
+
+      const response = await login(data);
+
+      console.log('Response from login API:', response); // Agregado para depuración
+
+      if (response.token) {
+        setCurrentUser({ token: response.token.token }); // Actualiza el contexto con el token de acceso
         navigation.navigate('Main');
       } else {
         Alert.alert('Error', 'Credenciales inválidas. Por favor, intenta nuevamente.');
       }
     } catch (error) {
+      console.error('Error during login:', error);
       Alert.alert('Error', 'Hubo un error en la autenticación. Por favor, intenta nuevamente.');
     }
   };
 
-  const fakeAuthenticationAPI = async (email, password) => {
+  const login = async (data) => {
     try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+      const response = await axios.post('http://localhost:3000/api/signin', data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-      if (response.status === 200) {
-        const users = response.data;
-        const authenticatedUser = users.find(user => user.email === email && user.username === password);
-
-        if (authenticatedUser) {
-          return { success: true, data: authenticatedUser };
-        } else {
-          return { success: false, error: 'Credenciales inválidas' };
-        }
-      } else {
-        return { success: false, error: 'Error en la API' };
-      }
+      return response.data;
     } catch (error) {
-      console.error('Error durante la llamada a la API:', error);
-      return { success: false, error: 'Error en la API' };
+      console.error(error);
+      console.error('Error during login request:', error);
+      throw error;
     }
   };
+
 
   return (
     <View style={styles.container}>
