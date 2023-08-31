@@ -40,13 +40,18 @@ export const LoginScreen = () => {
       }
     } catch (error) {
       console.error('Error during login:', error);
-      Alert.alert('Error', 'Hubo un error en la autenticación. Por favor, intenta nuevamente.');
+
+      if (error.response && error.response.data && error.response.data.message) {
+        Alert.alert('Error', error.response.data.message);
+      } else {
+        Alert.alert('Error', 'Hubo un error en la autenticación. Por favor, intenta nuevamente.');
+      }
     }
   };
 
   const login = async (data) => {
     try {
-      const response = await axios.post('http://localhost:3000/api/signin', data, {
+      const response = await axios.post('http://192.168.1.254:3000/api/signin', data, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -77,8 +82,10 @@ export const LoginScreen = () => {
         onChangeText={setPassword}
         secureTextEntry
       />
+      <View style={styles.separator}></View>
       <Button title="Iniciar sesión" onPress={handleLogin} />
-      <Button title="Ir a MainScreen" onPress={goToMainScreen} />
+      <View style={styles.separator01}></View>
+      <Button title="Entrar como invitado" onPress={goToMainScreen} />
       <StatusBar style="auto" />
     </View>
   );
@@ -100,6 +107,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginVertical: 10,
     paddingHorizontal: 10,
+  },
+
+  separator: {
+    height: 20, // Ajusta la altura según tus preferencias
+  },
+
+  separator01: {
+    height: 20, // Ajusta la altura según tus preferencias
   },
 });
 
