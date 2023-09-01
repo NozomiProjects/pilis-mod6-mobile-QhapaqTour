@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { MainStackScreen } from './src/screens/Main/MainScreen';
 import { COLORS } from './src/utils/theme';
 import { UserProvider } from './src/contexts/UserContext';
+import { RegisterScreen } from './src/screens/Register/RegisterScreen';
 
 const ListStack = createNativeStackNavigator();
 
@@ -13,7 +14,11 @@ export default function App() {
       <UserProvider>
         <NavigationContainer>
           <ListStack.Navigator screenOptions={{ headerShown: false }}>
+            {/* Pantallas con Tab */}
             <ListStack.Screen name='Main' component={MainStackScreen} />
+            
+            {/* Pantallas sin Tab */}
+            <ListStack.Screen name='Register' component={RegisterScreen} />
           </ListStack.Navigator>
         </NavigationContainer>
       </UserProvider>
