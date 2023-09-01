@@ -7,7 +7,7 @@ export const data =[
         Tiempo: '8',
         Guia: 'Amir Sumaqmi',
         Precio: '20.000',
-        Favorito: 'false',
+        Favorito: false,
         Calificacion: 5.0,
         Images: require('../../assets/8.png'),
         ImgGuia: require('../../assets/amir.png')
@@ -20,7 +20,7 @@ export const data =[
         Tiempo: '10',
         Guia: 'Veronica Perez',
         Precio: '23.000',
-        Favorito: 'false',
+        Favorito: false,
         Calificacion: 5.0,
         Images: require('../../assets/6.png'),
         ImgGuia: require('../../assets/veronica.png')
@@ -34,7 +34,7 @@ export const data =[
         Tiempo: '6',
         Guia: 'Miguel Vicente',
         Precio: '10.000',
-        Favorito: 'true',
+        Favorito: true,
         Calificacion: 3.9,
         Images:require('../../assets/8.png'),
         ImgGuia: require('../../assets/miguel.png')
@@ -47,7 +47,7 @@ export const data =[
         Tiempo: '8',
         Guia: 'Eli Erizariaga',
         Precio: '12.000',
-        Favorito: 'false',
+        Favorito: false,
         Calificacion: 4.8,
         Images:require('../../assets/5.png'),
         ImgGuia: require('../../assets/eli.png')
@@ -60,7 +60,7 @@ export const data =[
         Tiempo: '8',
         Guia: 'Mirta juarez',
         Precio: '12.000',
-        Favorito: 'true',
+        Favorito: true,
         Calificacion: 4.8,
         Images: require('../../assets/9.png'),
         ImgGuia: require('../../assets/juarez.png')
@@ -73,7 +73,7 @@ export const data =[
         Tiempo: '8',
         Guia: 'Marcelino Piñero',
         Precio: '18.000',
-        Favorito: 'false',
+        Favorito: false,
         Calificacion: 4.9,
         Images: require('../../assets/3.png'),
         ImgGuia: require('../../assets/marcelino.png')
@@ -86,7 +86,7 @@ export const data =[
         Tiempo: '9',
         Guia: 'Miguel Vicente',
         Precio: '15.000',
-        Favorito: 'true',
+        Favorito: true,
         Calificacion: 3.8,
         Images:require('../../assets/4.png'),        
         ImgGuia: require('../../assets/miguel.png')

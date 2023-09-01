@@ -4,7 +4,7 @@ import { COLORS } from '../../utils/theme';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F1F1F1',
+    backgroundColor: '#F6F6F6',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -34,6 +34,16 @@ export const styles = StyleSheet.create({
     flexDirection: 'row', // Alinea los elementos en fila
     
     alignItems: 'center',
+  },
+  itemTitulo:{
+    fontSize:17,
+    fontWeight:'bold'
+  },
+  itemImgTitulo:{    
+    width: 73,
+    height: 55,  
+    borderRadius: 20,    
+    marginRight:4,    
   },
   itemList: {
     padding: 10,
@@ -99,5 +109,15 @@ export const styles = StyleSheet.create({
     height: 17,
     borderRadius: 20,    
     marginRight:4,
+  },
+  
+  heartIcon: {
+    position: 'absolute',
+    backgroundColor: COLORS.white,
+    top: 5, // Ajusta la posición vertical del ícono del corazón
+    right: 5, // Ajusta la posición horizontal del ícono del corazón
+  },
+  heartIcon: {
+    // Estilos adicionales para el ícono del corazón si es necesario
   },
 });
