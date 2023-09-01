@@ -1,10 +1,26 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Text, SafeAreaView, FlatList, Pressable, View, Image } from 'react-native';
 import { styles } from './ExploreScreen.styles.js';
 import { data } from './../../api/data.js';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../../utils/theme';
+import { SearchBar } from './../../components/search-bar/SearchBar.jsx';//busca
+import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
+
+export const ExploreScreen = ({navigation}) => {
+  //--Inicio codigo de busqueda
+  //1 -aqui busca el usuario principalmente ada
+  const [searchQuery, setSearchQuery] = useState('')
+  //4-aqui se setea lo del archivo SearchBar
+  const handleSearch = (query) => {
+    setSearchQuery(query)
+  }  
+  //2- a medida que valla escribiendo el usuario se va a filtrar la ubicacion por titulo
+  const filteredLocations = data.filter(location => (
+    location.Lugar.toLowerCase().includes(searchQuery.toLowerCase())
+  ))
+  //--fin codigo de busqueda
 
 const Location = ({ item }) => (
   <Pressable>
@@ -27,12 +43,12 @@ const Location = ({ item }) => (
   </Pressable>
 );
 
-export const ExploreScreen = () => {
+
   return (
     <SafeAreaView style={styles.container}>
-      
+      <SearchBar handleSearch={handleSearch} searchQuery={searchQuery} />
       <FlatList
-        data={data}
+        data={filteredLocations}
         renderItem={Location}
         keyExtractor={item => item.id}
         style={styles.itemList}
