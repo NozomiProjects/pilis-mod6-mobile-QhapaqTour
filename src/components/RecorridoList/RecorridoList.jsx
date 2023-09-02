@@ -9,14 +9,8 @@ import { SafeAreaInsetsContext } from "react-native-safe-area-context";
 import { getRecorridos } from "../../api/recorridos";
 import { RecorridoCard } from '../RecorridoCard/RecorridoCard'
 
-export const RecorridoList = () => {
-  const [recorridos, setRecorridos] = useState([])
-
-  useEffect(() => {
-    getRecorridos()
-    .then(res => setRecorridos(res))
-    .catch(error => console.warn(error))
-  }, [])
+export const RecorridoList = ({recorridos}) => {
+  
 
   return (
     <SafeAreaView style={styles.container}>

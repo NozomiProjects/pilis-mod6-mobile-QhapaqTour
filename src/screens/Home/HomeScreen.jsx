@@ -1,8 +1,18 @@
+import React, { useEffect, useState } from "react";
 import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
 import { styles } from "./HomeScreen.styles";
 import { RecorridoList } from "../../components/RecorridoList/RecorridoList";
+import { getRecorridos } from "../../api/recorridos";
 
 export const HomeScreen = () => {
+  const [recorridos, setRecorridos] = useState([])
+
+  useEffect(() => {
+    getRecorridos()
+    .then(res => setRecorridos(res))
+    .catch(error => console.warn(error))
+  }, [])
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Región</Text>
@@ -48,7 +58,7 @@ export const HomeScreen = () => {
       </View>
 
       <Text style={styles.title}>Más votados</Text>
-      <RecorridoList />
+      <RecorridoList recorridos={recorridos} />
     </SafeAreaView>
   );
 };
