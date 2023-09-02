@@ -16,8 +16,8 @@ export default function App() {
         <NavigationContainer>
           <ListStack.Navigator screenOptions={{ headerShown: false }}>
             {/* Pantallas sin Tab */}
-            <ListStack.Screen name='LoginScreen' component={LoginScreen} />
-            <ListStack.Screen name='Register' component={RegisterScreen} />
+            {/* <ListStack.Screen name='LoginScreen' component={LoginScreen} />
+            <ListStack.Screen name='Register' component={RegisterScreen} /> */}
             
             {/* Pantallas con Tab */}
             <ListStack.Screen name='Main' component={MainStackScreen} />

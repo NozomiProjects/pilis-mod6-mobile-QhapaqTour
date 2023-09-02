@@ -1,26 +1,54 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-// import { useContext } from 'react';
-// import { UserContext } from '../../contexts/UserContext';
-// import { WelcomeScreen } from '../Welcome/WelcomeScreen';
-// import { SignInScreen } from '../SignIn/SignInScreen';
+import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
+import { styles } from "./HomeScreen.styles";
+import { RecorridoList } from "../../components/RecorridoList/RecorridoList";
 
 export const HomeScreen = () => {
-    // const { currentUser } = useContext(UserContext);
-
-    return (
-        <View style={styles.container}>
-          <Text>Home Screen</Text>
-          <StatusBar style="auto" />
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>Región</Text>
+      <View style={styles.regionesContainer}>
+        <View style={styles.regionItem}>
+          <Image
+            source={require("../../../assets/images/yungas.jpg")}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          <Text style={styles.regionText}>Yungas</Text>
         </View>
-    );
-};
+        <View style={styles.regionItem}>
+          <Image
+            source={require("../../../assets/images/quebrada.jpg")}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          <Text style={styles.regionText}>Quebrada</Text>
+        </View>
+        <View style={styles.regionItem}>
+          <Image
+            source={require("../../../assets/images/puna.jpg")}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          <Text style={styles.regionText}>Puna</Text>
+        </View>
+        <View style={styles.regionItem}>
+          <Image
+            source={require("../../../assets/images/valles.jpg")}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          <Text style={styles.regionText}>Valles</Text>
+        </View>
+      </View>
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
+      <Text style={styles.title}>Recientes</Text>
+      <View>
+        {/* <ScrollView horizontal pagingEnabled >
+        </ScrollView> */}
+      </View>
+
+      <Text style={styles.title}>Más votados</Text>
+      <RecorridoList />
+    </SafeAreaView>
+  );
+};
