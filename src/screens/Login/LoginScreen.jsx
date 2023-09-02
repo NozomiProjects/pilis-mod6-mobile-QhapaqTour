@@ -1,9 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, useContext } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Alert } from 'react-native';
+import { Text, View, Button, TextInput, Alert, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
 import { UserContext } from '../../contexts/UserContext';
+import { login } from '../../api/usuarios';
+import { styles } from './LoginScreen.styles';
 
 export const LoginScreen = () => {
   const navigation = useNavigation();
@@ -12,7 +12,11 @@ export const LoginScreen = () => {
   const [password, setPassword] = useState('');
 
   const goToMainScreen = () => {
-    navigation.navigate('Main'); // Navegar al MainScreen
+    navigation.navigate('Main', { screen: 'Home' }); // Navegar al MainScreen
+  };
+
+  const goToRegister = () => {
+    navigation.navigate('Register');
   };
 
   const handleLogin = async () => {
@@ -26,15 +30,17 @@ export const LoginScreen = () => {
         password,
       };
 
-      console.log('Sending login request with data:', data); // Agregado para depuración
+      // Agregado para depuración
+      // console.log('Sending login request with data:', data); 
 
       const response = await login(data);
 
-      console.log('Response from login API:', response); // Agregado para depuración
+      // Agregado para depuración
+      // console.log('Response from login API:', response);
 
       if (response.token) {
         setCurrentUser({ token: response.token.token }); // Actualiza el contexto con el token de acceso
-        navigation.navigate('Main');
+        navigation.navigate('Main', { screen: 'Home' });
       } else {
         Alert.alert('Error', 'Credenciales inválidas. Por favor, intenta nuevamente.');
       }
@@ -49,73 +55,37 @@ export const LoginScreen = () => {
     }
   };
 
-  const login = async (data) => {
-    try {
-      const response = await axios.post('http://192.168.1.254:3000/api/signin', data, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      console.error('Error during login request:', error);
-      throw error;
-    }
-  };
-
 
   return (
     <View style={styles.container}>
-      <Text>Login Screen</Text>
+      <Text style={styles.title}>QhapaqTour</Text>
+      <Text style={styles.subTitle}>Ingresa a tu cuenta</Text>
       <TextInput
         style={styles.input}
-        placeholder="Correo electrónico o cuenta"
+        placeholder="Tu email o nombre de usuario"
         value={email}
         onChangeText={setEmail}
       />
       <TextInput
         style={styles.input}
-        placeholder="Contraseña"
+        placeholder="Tu contraseña"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
       <View style={styles.separator}></View>
-      <Button title="Iniciar sesión" onPress={handleLogin} />
-      <View style={styles.separator01}></View>
-      <Button title="Entrar como invitado" onPress={goToMainScreen} />
-      <StatusBar style="auto" />
+      <Button title="Ingresar" onPress={handleLogin} />
+      <View style={styles.separator}></View>
+      <Button title="Continuar como invitado" onPress={goToMainScreen} />
+      <View style={styles.separator}></View>
+      <View style={styles.registerContainer}>
+        <Text>¿No tienes cuenta?</Text>
+        <TouchableOpacity onPress={goToRegister}>
+          <Text style={styles.buttonText}>Registrate</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  input: {
-    width: 250,
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginVertical: 10,
-    paddingHorizontal: 10,
-  },
-
-  separator: {
-    height: 20, // Ajusta la altura según tus preferencias
-  },
-
-  separator01: {
-    height: 20, // Ajusta la altura según tus preferencias
-  },
-});
 
 

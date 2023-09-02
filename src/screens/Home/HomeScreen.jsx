@@ -3,19 +3,16 @@ import { StyleSheet, Text, View } from 'react-native';
 // import { useContext } from 'react';
 // import { UserContext } from '../../contexts/UserContext';
 // import { WelcomeScreen } from '../Welcome/WelcomeScreen';
-// import { LoginScreen } from '../Login/LoginScreen';
+// import { SignInScreen } from '../SignIn/SignInScreen';
 
 export const HomeScreen = () => {
     // const { currentUser } = useContext(UserContext);
 
     return (
         <View style={styles.container}>
-        <Text>Home Screen</Text>
-        <StatusBar style="auto" />
+          <Text>Home Screen</Text>
+          <StatusBar style="auto" />
         </View>
-        // <>
-        //     { currentUser ? <WelcomeScreen /> : <LoginScreen />}
-        // </>
     );
 };
 
