@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, SafeAreaView, Text, View } from 'react-native';
 import { RecorridoCard } from '../../components/RecorridoCard/RecorridoCard';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
 import { styles } from './ExploreScreen.style';

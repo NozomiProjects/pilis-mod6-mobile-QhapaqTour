@@ -11,8 +11,12 @@ export const getRecorridos = async () => {
     if (!response.ok) {
       throw result
     }
+    const data = result.map(recorrido => ({
+      ...recorrido,
+      esFavorito: false
+    }))
 
-    return result
+    return data
   } catch (error) {
     console.error(error)
     throw error

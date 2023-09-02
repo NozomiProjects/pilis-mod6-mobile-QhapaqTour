@@ -11,14 +11,20 @@ export const RecorridoCard = ({ item }) => {
   //TODO: Implementar funcion de favoritos
   //TODO: Agregar animacion al boton favoritos
 
+  // Código de icono de corazón
+  const toggleLike = (item) => {
+    // Cambia el estado del elemento actual
+    // item.Favorito = !item.Favorito;
+  }
+
   return (
     <Pressable>
       <View style={styles.itemContainer}>
         <View style={styles.imageContainer}>
           <Image source={{ uri: item.lugar.url }} style={styles.itemImage} />
-          <Pressable onPress={() => {}} style={styles.heartIconContainer}>
+          <Pressable onPress={toggleLike} style={styles.heartIconContainer}>
             <Ionicons
-              name="heart-outline"
+              name={item.esFavorito ? "heart-sharp" : "heart-outline"}
               size={24}
               color={COLORS.primary}
               style={styles.heartIcon}

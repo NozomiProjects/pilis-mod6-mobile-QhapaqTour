@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { FlatList, SafeAreaView, Text, View } from "react-native";
+import { styles } from "./FavoritesScreen.styles";
+import { getRecorridos } from "../../api/recorridos";
+import { RecorridoCard } from "../../components/RecorridoCard/RecorridoCard";
 
 export const FavoritesScreen = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Favorites Screen</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [data, setData] = useState([]);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  useEffect(() => {
+    getRecorridos()
+      .then((res) => setData(res))
+      .catch((error) => console.warn(error));
+  }, []);
+  
+  const filteredRecorridos = data.filter((location) => location.isFavorite);
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.itemRowContainer}>
+        <Text style={styles.itemTitulo}>Favoritos</Text>
+      </View>
+      <FlatList
+        data={filteredRecorridos}
+        renderItem={RecorridoCard}
+        keyExtractor={(item) => item.id}
+        style={styles.itemList}
+      />
+    </SafeAreaView>
+  );
+};
