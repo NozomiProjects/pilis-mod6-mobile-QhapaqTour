@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { api } from "./api"
 
 const RECORRIDOS_URL = `${api.server}/recorridos`
@@ -11,12 +10,8 @@ export const getRecorridos = async () => {
     if (!response.ok) {
       throw result
     }
-    const data = result.map(recorrido => ({
-      ...recorrido,
-      esFavorito: false
-    }))
-
-    return data
+    
+    return result
   } catch (error) {
     console.error(error)
     throw error

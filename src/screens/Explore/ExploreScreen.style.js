@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
-    backgroundColor: '#F6F6F6',
+    backgroundColor: COLORS.tertiary,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -24,27 +24,27 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between', // Alinea los elementos con espacio entre ellos
-    marginTop: 2,
+    marginTop: 10,
   },
   itemRowContain: {
     flexDirection: 'row',
-    alignItems: 'center',    
+    // alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 2,
   },
   itemRowRight: {
     flexDirection: 'row', // Alinea los elementos en fila
-    
     alignItems: 'center',
   },
   itemTitulo:{
-    fontSize:17,
+    fontSize:24,
     fontWeight:'bold'
   },
   itemImgTitulo:{    
     width: 73,
-    height: 55,  
-    borderRadius: 20,    
-    marginRight:4,    
+    height: 55,
+    borderRadius: 20,
+    marginRight:4,
   },
   itemList: {
     padding: 10,

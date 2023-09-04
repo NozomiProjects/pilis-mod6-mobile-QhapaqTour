@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FlatList, SafeAreaView, Text, View } from "react-native";
 import { styles } from "./FavoritesScreen.styles";
 import { getRecorridos } from "../../api/recorridos";
 import { RecorridoCard } from "../../components/RecorridoCard/RecorridoCard";
+import { FavoritesContext } from "../../contexts/FavoritesContext";
 
 export const FavoritesScreen = () => {
+  const { favorites } = useContext(FavoritesContext)
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -13,7 +15,7 @@ export const FavoritesScreen = () => {
       .catch((error) => console.warn(error));
   }, []);
   
-  const filteredRecorridos = data.filter((location) => location.isFavorite);
+  const filteredRecorridos = data.filter((recorrido) => favorites.includes(recorrido.id));
 
   return (
     <SafeAreaView style={styles.container}>
@@ -22,7 +24,7 @@ export const FavoritesScreen = () => {
       </View>
       <FlatList
         data={filteredRecorridos}
-        renderItem={RecorridoCard}
+        renderItem={({ item }) => <RecorridoCard item={item} />}
         keyExtractor={(item) => item.id}
         style={styles.itemList}
       />

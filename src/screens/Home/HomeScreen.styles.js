@@ -1,5 +1,4 @@
 import { StatusBar, StyleSheet } from "react-native";
-import { COLORS } from '../../utils/theme'
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,8 +6,8 @@ export const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontFamily: 'Poppins_800ExtraBold',
     marginVertical: 20,
     marginLeft: 25
   },
@@ -28,6 +27,8 @@ export const styles = StyleSheet.create({
     borderRadius: 100
   },
   regionText: {
+    fontSize: 12,
+    fontFamily: 'Poppins_600SemiBold',
     textAlign: 'center'
   }
 });

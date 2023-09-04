@@ -3,7 +3,8 @@ import { COLORS } from '../../utils/theme';
 
 export const styles = StyleSheet.create({
   itemContainer: {
-    flexDirection: 'row', // Alineamos elementos en fila
+    flexDirection: 'row',
+    gap: 12,
     width: Dimensions.get('screen').width - 20,
     borderRadius: 20,
     overflow: 'hidden',
@@ -12,106 +13,20 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
-    padding: 10
-  },  
-  itemRowContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between', // Alinea los elementos con espacio entre ellos
-    marginTop: 2,
+    padding: 12
   },
-  itemRowContain: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',  
-    marginTop: 2,
-  },
-  itemRowRight: {
-    flexDirection: 'row', // Alinea los elementos en fila
-    alignItems: 'center',
-  },
-  itemTitulo:{
-    fontSize:17,
-    fontWeight:'bold'
-  },
-  itemImgTitulo:{    
-    width: 73,
-    height: 55,  
-    borderRadius: 20,    
-    marginRight:4,    
-  },
-  itemImage: {
-    marginTop: '4%',
-    marginLeft: '4%',
-    height: 90,
-    width: '100%',
-    resizeMode: 'cover',
-    borderRadius: 5,
-  },
-  itemTextContainer: {
-    marginLeft: '4%', // Espacio entre imagen y texto
-    width: '46%', // Ajustamos el ancho del contenedor de texto
-  },
-  itemLugar: {
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 1,
-    marginHorizontal: 0,
-    fontSize:13,
-  },
-  itemLocalidad: {
-    marginBottom: 1,
-    marginHorizontal: 0,
-    fontSize:11,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  itemTiempo: {
-    marginBottom: 1,
-    marginHorizontal: 0,
-    fontSize: 10,
-    marginRight: 20
-  },
-  itemPrecio: {
-    marginBottom: 1,
-    marginHorizontal: 0,    
-    fontSize: 12,
-    textAlign: 'right', // Alinea el texto a la derecha
-  },
-  itemGuia: {
-    marginBottom: 1,
-    marginHorizontal: 0,
-    fontSize:12,
-    marginRight:7
-  },
-  
-  itemCalificacion: {
-    marginBottom: 1,
-    marginHorizontal: 0,
-    marginRight:0,
-    fontSize:10,
-    textAlign: 'right',
-  },
-  itemImgGuia: {
-    width: 17,
-    height: 17,
-    borderRadius: 20,    
-    marginRight:4,
-  },
-  
-  // heartIcon: {
-  //   position: 'absolute',
-  //   top: 5, // Ajusta la posición vertical del ícono del corazón
-  //   right: 5, // Ajusta la posición horizontal del ícono del corazón
-  // },
   imageContainer: {
     position: 'relative',
-    flex: 1,
+    flex: 0.45,
   },
-  heartIconContainer: {
+  itemImage: {
+    height: 100,
+    resizeMode: 'cover',
+    borderRadius: 12,
+  },
+  buttonHeart: {
     position: 'absolute',
-    top: 15,
+    top: 5,
     right: 5,
     height: 35,
     width: 35,
@@ -121,4 +36,57 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  itemRowContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 4,
+  },
+  itemInformationContainer: {
+    flex: 0.55
+  },
+  itemLugar: {
+    fontSize: 16,
+    fontFamily: 'Poppins_600SemiBold',
+    marginBottom: 1,
+  },
+  itemLocalidadContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: 1,
+  },
+  itemLocalidad: {
+    fontSize: 12,
+    fontFamily: 'Poppins_400Regular',
+    color: COLORS.secondary
+  },
+  itemTiempo: {
+    fontSize: 12,
+    marginRight: 20,
+    color: COLORS.secondary
+  },
+  itemPrecio: {   
+    fontSize: 12,
+    color: COLORS.secondary
+  },
+  itemGuia: {
+    marginBottom: 1,
+    marginHorizontal: 0,
+    fontSize:12,
+    marginRight:7
+  },
+  itemImgGuia: {
+    width: 20,
+    height: 20,
+    borderRadius: 20,    
+    marginRight:4,
+  },
+  itemCalificacionContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  itemCalificacion: {
+    color: COLORS.secondary
+  } 
 });
