@@ -5,18 +5,18 @@ import { COLORS } from '../../utils/theme';
 
 export const WelcomeScreen = () => {
   const { setCurrentUser } = useContext(UserContext)
-  
+
   const handleLogout = () => {
     setCurrentUser(null)
   }
-    return (
-        <View style={styles.container}>
-          <Text>Welcome Screen</Text>
-          <TouchableOpacity onPress={handleLogout} style={styles.button}>
-            <Text style={styles.buttonText}>Cerrar sesión</Text>
-          </TouchableOpacity>
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <Text>Perfil de usuario</Text>
+      <TouchableOpacity onPress={handleLogout} style={styles.button}>
+        <Text style={styles.buttonText}>Cerrar sesión</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
