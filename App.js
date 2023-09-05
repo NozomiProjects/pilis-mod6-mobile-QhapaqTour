@@ -18,9 +18,11 @@ import {
   FavoritesProvider,
 } from "./src/contexts/FavoritesContext";
 import { RegionProvider } from "./src/contexts/RegionContext";
-
+/*import { GeneralScreen } from "./src/screens/General/GeneralScreen";
+import {DetalleScreen} from "./src/screens/Detalle/DetalleScreen";
+import {ComentariosScreen} from "./src/screens/Comentario/ComentariosScreen";
+*/
 const ListStack = createNativeStackNavigator();
-
 export default function App() {
   const { setFavorites } = useContext(FavoritesContext);
 
@@ -49,7 +51,10 @@ export default function App() {
                 {/* Pantallas sin Tab */}
                 <ListStack.Screen name='LoginScreen' component={LoginScreen} />
                 <ListStack.Screen name='Register' component={RegisterScreen} />
-
+        {/*     <ListStack.Screen name='General' component={GeneralScreen} />                 
+                <ListStack.Screen name='Detalle' component={DetalleScreen} /> 
+                <ListStack.Screen name='Comentarios' component={ComentariosScreen} /> 
+*/}
                 {/* Pantallas con Tab */}
                 <ListStack.Screen name="Main" component={MainStackScreen} />
 
