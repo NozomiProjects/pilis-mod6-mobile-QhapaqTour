@@ -4,10 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import { UserContext } from '../../contexts/UserContext';
 import { login } from '../../api/usuarios';
 import { styles } from './LoginScreen.styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const LoginScreen = () => {
   const navigation = useNavigation();
-  const { setCurrentUser } = useContext(UserContext); // Obtenemos el setter del contexto
+  const { setCurrentUser, setUserId } = useContext(UserContext); // Obtener setters del contexto
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -30,16 +31,16 @@ export const LoginScreen = () => {
         password,
       };
 
-      // Agregado para depuración
-      // console.log('Sending login request with data:', data); 
-
       const response = await login(data);
 
-      // Agregado para depuración
-      // console.log('Response from login API:', response);
+      if (response.token.token) {
+        // Guardar el ID del usuario en AsyncStorage
+        await AsyncStorage.setItem('userId', response.user.id.toString());
 
-      if (response.token) {
-        setCurrentUser({ token: response.token.token }); // Actualiza el contexto con el token de acceso
+        setCurrentUser({
+          token: response.token.token, // Aquí corregido
+          user: response.user, // Esto incluye el ID del usuario
+        });
         navigation.navigate('Main', { screen: 'Home' });
       } else {
         Alert.alert('Error', 'Credenciales inválidas. Por favor, intenta nuevamente.');
@@ -54,6 +55,7 @@ export const LoginScreen = () => {
       }
     }
   };
+
 
 
   return (

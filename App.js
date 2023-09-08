@@ -18,6 +18,9 @@ import {
   FavoritesProvider,
 } from "./src/contexts/FavoritesContext";
 import { RegionProvider } from "./src/contexts/RegionContext";
+import { ModifyProfileNavigator } from './src/screens/ModifyProfile/ModifyProfileNavigator.jsx';
+
+
 
 const ListStack = createNativeStackNavigator();
 
@@ -49,6 +52,7 @@ export default function App() {
                 {/* Pantallas sin Tab */}
                 <ListStack.Screen name='LoginScreen' component={LoginScreen} />
                 <ListStack.Screen name='Register' component={RegisterScreen} />
+                <ListStack.Screen name='ModifyProfile' component={ModifyProfileNavigator} />
 
                 {/* Pantallas con Tab */}
                 <ListStack.Screen name="Main" component={MainStackScreen} />

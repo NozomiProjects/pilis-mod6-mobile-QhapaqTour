@@ -14,20 +14,27 @@ export const FavoritesScreen = () => {
       .then((res) => setData(res))
       .catch((error) => console.warn(error));
   }, []);
-  
-  const filteredRecorridos = data.filter((recorrido) => favorites.includes(recorrido.id));
+
+  // Filtra los recorridos favoritos que están en los datos disponibles
+  const filteredRecorridos = data.filter((recorrido) => favorites.includes(recorrido.idRecorrido));
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.itemRowContainer}>
         <Text style={styles.itemTitulo}>Favoritos</Text>
       </View>
-      <FlatList
-        data={filteredRecorridos}
-        renderItem={({ item }) => <RecorridoCard item={item} />}
-        keyExtractor={(item) => item.id}
-        style={styles.itemList}
-      />
+      {filteredRecorridos.length > 0 ? (
+        <FlatList
+          data={filteredRecorridos}
+          renderItem={({ item }) => (
+            <RecorridoCard item={item} />
+          )}
+          keyExtractor={(item) => (item.idRecorrido ? item.idRecorrido.toString() : null)} // Manejo de elementos sin id
+          style={styles.itemList}
+        />
+      ) : (
+        <Text>No tienes recorridos favoritos.</Text>
+      )}
     </SafeAreaView>
   );
 };

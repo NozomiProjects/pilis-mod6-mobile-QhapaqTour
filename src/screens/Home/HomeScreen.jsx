@@ -17,7 +17,10 @@ export const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     getRecorridos()
-      .then((res) => setRecorridos(res))
+      .then((res) => {
+        //console.log("Recorridos obtenidos:", res);
+        setRecorridos(res);
+      })
       .catch((error) => console.warn(error));
   }, []);
 

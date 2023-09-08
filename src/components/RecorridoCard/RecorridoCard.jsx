@@ -4,15 +4,20 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Entypo, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 import { styles } from "./RecorridoCard.styles";
-import { COLORS } from "./../../utils/theme"; 
+import { COLORS } from "./../../utils/theme";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
 
 const formatDuration = (duration) => Math.floor(duration / 1000 / 60 / 60);
 
-const calculateRating = (rating) => rating.reduce((accumulator, calificacion) => accumulator + calificacion.note, 0) / rating.length;
+const calculateRating = (ratings) => {
+  if (!ratings || ratings.length === 0) {
+    return 0; // Handle the case where there are no ratings.
+  }
+  const totalRating = ratings.reduce((accumulator, calificacion) => accumulator + calificacion.note, 0);
+  return totalRating / ratings.length;
+};
 
 export const RecorridoCard = ({ item }) => {
   const navigation = useNavigation();
@@ -24,10 +29,10 @@ export const RecorridoCard = ({ item }) => {
   });
 
   useEffect(() => {
-    if (favorites.includes(item.id)) {
+    if (item && favorites.includes(item.idRecorrido)) { // Verificar que 'item' esté definido
       setIsFavorite(true);
     }
-  }, [])
+  }, [item]);
 
   useEffect(() => {
     const saveFavorites = async () => {
@@ -37,19 +42,19 @@ export const RecorridoCard = ({ item }) => {
       } catch (error) {
         console.error(error);
       }
-    }
+    };
     saveFavorites();
-  }, [favorites])
+  }, [favorites]);
 
   const toggleLike = () => {
-    setIsFavorite(prev => !prev);
-    setFavorites(prev => {
-      if (prev.includes(item.id)) {
-        return prev.filter(id => id !== item.id);
+    setIsFavorite((prev) => !prev);
+    setFavorites((prev) => {
+      if (item && prev.includes(item.idRecorrido)) { // Verificar que 'item' esté definido
+        return prev.filter((id) => id !== item.idRecorrido);
       }
-      return [...prev, item.id];
+      return item ? [...prev, item.idRecorrido] : prev; // Verificar que 'item' esté definido
     });
-  }
+  };
 
   if (!fontsLoaded && !fontError) {
     return null;
@@ -88,7 +93,7 @@ export const RecorridoCard = ({ item }) => {
                 source={{ uri: item.lugar.url }}
                 style={styles.itemImgGuia}
               />
-              <Text style={styles.itemGuia}>{item.guia.id}</Text>
+              <Text style={styles.itemGuia}>{item.username ? item.username : 'Nombre no disponible'}</Text>
             </View>
             <View style={styles.itemCalificacionContainer}>
               <Entypo name="star" size={16} color={COLORS.primary} />

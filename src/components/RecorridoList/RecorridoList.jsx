@@ -18,22 +18,20 @@ export const RecorridoList = ({ recorridos, recents, navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {recents ? (
-        <FlatList
-          data={recentsList}
-          renderItem={({ item }) => <RecorridoCardVertical item={item} />}
-          keyExtractor={(item) => item.id}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
-      ) : (
-        <FlatList
-          data={mostRecommended}
-          renderItem={({ item }) => <RecorridoCard item={item} />}
-          keyExtractor={(item) => item.id}
-          style={styles.itemList}
-        />
-      )}
+      <FlatList
+        data={recents ? recentsList : mostRecommended}
+        renderItem={({ item }) => (
+          recents ? (
+            <RecorridoCardVertical item={item} />
+          ) : (
+            <RecorridoCard item={item} />
+          )
+        )}
+        keyExtractor={(item) => item.idRecorrido.toString()} // Utiliza "idRecorrido" como el identificador
+        horizontal={recents}
+        showsHorizontalScrollIndicator={false}
+        style={recents ? null : styles.itemList} // Aplica el estilo solo cuando recents sea falso
+      />
     </SafeAreaView>
   );
 };
