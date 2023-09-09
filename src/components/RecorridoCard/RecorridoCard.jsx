@@ -3,16 +3,13 @@ import { Text, Pressable, View, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Entypo, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-
-
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 import { styles } from "./RecorridoCard.styles";
 import { COLORS } from "./../../utils/theme"; 
 import { FavoritesContext } from "../../contexts/FavoritesContext";
+import { calculateRating } from "../../utils/rating";
 
 const formatDuration = (duration) => Math.floor(duration / 1000 / 60 / 60);
-
-const calculateRating = (rating) => rating.reduce((accumulator, calificacion) => accumulator + calificacion.note, 0) / rating.length;
 
 export const RecorridoCard = ({ item }) => {
   const navigation = useNavigation();
@@ -33,7 +30,6 @@ export const RecorridoCard = ({ item }) => {
     const saveFavorites = async () => {
       try {
         await AsyncStorage.setItem('favorites', JSON.stringify(favorites));
-        console.warn(favorites);
       } catch (error) {
         console.error(error);
       }
@@ -88,7 +84,7 @@ export const RecorridoCard = ({ item }) => {
                 source={{ uri: item.lugar.url }}
                 style={styles.itemImgGuia}
               />
-              <Text style={styles.itemGuia}>{item.guia.id}</Text>
+              <Text style={styles.itemGuia}>{item.username}</Text>
             </View>
             <View style={styles.itemCalificacionContainer}>
               <Entypo name="star" size={16} color={COLORS.primary} />

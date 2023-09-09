@@ -32,7 +32,7 @@ export const ExploreScreen = ({ navigation }) => {
     setSearchQuery(query);
   };
   
-  const filteredByRegion = data.filter(({ lugar }) => lugar.regiones.includes(region));
+  const filteredByRegion = data.filter(({ lugar }) => lugar.region.includes(region));
   
   //2- a medida que vaya escribiendo el usuario se va a filtrar la ubicación por título
   const filteredLocations = filteredByRegion.filter((location) =>

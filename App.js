@@ -30,7 +30,6 @@ export default function App() {
     const getFavorites = async () => {
       try {
         const favoritesJSON = await AsyncStorage.getItem("favorites");
-        console.warn({ favoritesJSON });
         if (favoritesJSON) {
           setFavorites(JSON.parse(favoritesJSON));
         }
@@ -55,10 +54,11 @@ export default function App() {
                 <ListStack.Screen name='Detalle' component={DetalleScreen} /> 
                 <ListStack.Screen name='Comentarios' component={ComentariosScreen} /> 
 */}
+                <ListStack.Screen name='RecorridoDetail' component={RecorridoDetailScreen} />
+                {/* <ListStack.Screen name='RecorridoDetail' component={RecorridoDetailScreen} /> */}
                 {/* Pantallas con Tab */}
                 <ListStack.Screen name="Main" component={MainStackScreen} />
 
-                <ListStack.Screen name='RecorridoDetail' component={RecorridoDetailScreen} />
               </ListStack.Navigator>
             </NavigationContainer>
           </RegionProvider>
