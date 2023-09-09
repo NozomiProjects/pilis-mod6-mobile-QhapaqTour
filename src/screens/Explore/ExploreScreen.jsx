@@ -31,15 +31,9 @@ export const ExploreScreen = ({ navigation }) => {
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
-<<<<<<< HEAD
   
   const filteredByRegion = data.filter(({ lugar }) => lugar.region.includes(region));
   
-=======
-
-  const filteredByRegion = data.filter(({ lugar }) => lugar.regiones.includes(region));
-
->>>>>>> 7a5d43ee5a1486b87d9cfbf67534f09e5cd955e6
   //2- a medida que vaya escribiendo el usuario se va a filtrar la ubicación por título
   const filteredLocations = filteredByRegion.filter((location) =>
     location.lugar.nombre.toLowerCase().includes(searchQuery.toLowerCase())
