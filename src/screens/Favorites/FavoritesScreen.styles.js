@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
-    backgroundColor: '#F6F6F6',
+    backgroundColor: COLORS.tertiary,
     alignItems: 'center',
     justifyContent: 'center',
   },

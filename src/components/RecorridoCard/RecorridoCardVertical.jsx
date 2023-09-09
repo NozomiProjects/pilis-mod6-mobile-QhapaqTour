@@ -23,7 +23,7 @@ export const RecorridoCardVertical = ({ item }) => {
   }
 
   return (
-    <Pressable onPress={() => navigation.navigate('RecorridoDetail', { item })}>
+    <Pressable onPress={() => navigation.navigate("RecorridoDetail", { item })}>
       <View style={styles.itemContainer}>
         <Image source={{ uri: item.lugar.url }} style={styles.itemImage} />
 
@@ -32,7 +32,9 @@ export const RecorridoCardVertical = ({ item }) => {
           <View style={styles.itemCalificacionContainer}>
             <Entypo name="star" size={16} color={COLORS.primary} />
             <Text style={styles.itemCalificacion}>
-              {calculateRating(item.calificaciones)}
+              {item.calificaciones.length > 0
+                ? calculateRating(item.calificaciones)
+                : 0}
             </Text>
           </View>
         </View>

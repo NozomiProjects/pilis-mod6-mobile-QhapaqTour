@@ -1,27 +1,35 @@
-import React from "react";
-import { ImageBackground, Image, ScrollView, Text, View, TouchableOpacity } from "react-native";
+import { useState } from "react";
+import {
+  ScrollView,
+  Text,
+  View,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import { Ionicons, MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
 import {
   useFonts,
   Poppins_400Regular,
+  Poppins_500Medium,
   Poppins_600SemiBold,
 } from "@expo-google-fonts/poppins";
-import { Manjari_700Bold } from "@expo-google-fonts/manjari";
-import { styles } from "./RecorridoDetailScreen.styles";
-import { HeadCard } from "../../components/HeadCard/HeadCard";
-import { DetalleCard } from "../../components/DetalleCard/DetalleCard";
 import { TresBtnCard } from "../../components/TresBtnCard/TresBtnCard";
 import { COLORS } from "../../utils/theme";
 import { calculateRating } from "../../utils/rating";
+import { styles } from "./RecorridoDetailScreen.styles";
+import { GeneralContent } from "../../components/GeneralContent/GeneralContent";
+import { DetalleContent } from "../../components/DetalleContent/DetalleContent";
+import { ComentarioContent } from "../../components/ComentarioContent/ComentarioContent";
 
 const formatDuration = (duration) => Math.floor(duration / 1000 / 60 / 60);
 
 export const RecorridoDetailScreen = ({ route }) => {
   const { item } = route.params;
+  const [activeButton, setActiveButton] = useState("button1");
   let [fontsLoaded, fontError] = useFonts({
     Poppins_400Regular,
-    Poppins_600SemiBold,
-    Manjari_700Bold,
+    Poppins_500Medium,
+    Poppins_600SemiBold
   });
 
   if (!fontsLoaded && !fontError) {
@@ -29,76 +37,78 @@ export const RecorridoDetailScreen = ({ route }) => {
   }
 
   return (
-    <ScrollView styles={styles.container}>
+    <ScrollView style={styles.container} nestedScrollEnabled={true}>
       <View style={styles.headerContainer}>
         <ImageBackground
           source={{ uri: item.lugar.url }}
           style={styles.backgroundImage}
         >
-          <Text style={styles.itemTitle}>{item.lugar.nombre}</Text>
-          <Text style={styles.itemSubtitle}>{item.lugar.region}</Text>
-          <View style={styles.iconContainer}>
-            <View style={styles.leftContainer}>
-              <Ionicons
-                name="star"
-                size={24}
-                color={COLORS.white}
-                style={styles.starIcon}
-              />
-              <Text style={styles.stars}>
-                {calculateRating(item.calificaciones)}
-              </Text>
+          <View style={styles.headerContent}>
+            <View style={styles.topContainer}>
+              <View style={styles.leftContainer}>
+                <Ionicons
+                  name="star"
+                  size={24}
+                  color={COLORS.white}
+                  style={styles.starIcon}
+                />
+                <Text style={styles.rating}>
+                  {calculateRating(item.calificaciones)}
+                </Text>
+              </View>
+              <View style={styles.rightContainer}>
+                <Ionicons
+                  name="md-heart-sharp"
+                  style={styles.rightHeartIcon}
+                  size={24}
+                  color={COLORS.white}
+                />
+              </View>
             </View>
-            <View style={styles.rightContainer}>
-              <Ionicons
-                name="md-heart-sharp"
-                style={styles.rightHeartIcon}
-                size={24}
-                color="black"
-              />
+            <View style={styles.bottomContainer}>
+              <Text style={styles.itemTitle}>{item.lugar.nombre}</Text>
+              <Text style={styles.itemSubtitle}>{item.lugar.region}</Text>
             </View>
           </View>
         </ImageBackground>
       </View>
+      <View style={styles.navbar}>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            activeButton !== "button1" && styles.buttonInactive,
+          ]}
+          onPress={() => setActiveButton("button1")}
+        >
+          <Text style={styles.buttonText}>General</Text>
+        </TouchableOpacity>
 
-      <TresBtnCard />
+        <TouchableOpacity
+          style={[
+            styles.button,
+            activeButton !== "button2" && styles.buttonInactive,
+          ]}
+          onPress={() => setActiveButton("button2")}
+        >
+          <Text style={styles.buttonText}>Detalles</Text>
+        </TouchableOpacity>
 
-      <View style={styles.itemRowContain}>
-            <Image
-             source={require('../../../assets/images/puna.jpg')} // Reemplaza 'ruta_de_tu_imagen.jpg' con la ruta de tu imagen de fondo
-             style={styles.itemImgGuia}
-             />
+        <TouchableOpacity
+          style={[
+            styles.button,
+            activeButton !== "button3" && styles.buttonInactive,
+          ]}
+          onPress={() => setActiveButton("button3")}
+        >
+          <Text style={styles.buttonText}>Comentarios</Text>
+        </TouchableOpacity>
+      </View>
 
-            <Text style={styles.itemGuia}>{item.nombre} {item.apellido}</Text>
-        </View>
-        <View style={styles.itemRowContain}>
-            <MaterialCommunityIcons name="ticket-account" size={37} color="black" />
-            <Text style={styles.itemCupos}>Cupos</Text>
-            <View style={styles.itemRowContainer}>
-                <Text style={styles.itemCupoCantidad}>{item.cantidadPersonas}</Text>
-            </View>
-        </View>
-        
-        {/* <View style={styles.itemRowContainer}> */}
-        <View style={styles.itemRowContain}>
-            <Entypo name="back-in-time" style={styles.itemIcono} size={37} color="black" />
-            <Text style={styles.itemDuracion}>Duración</Text>
-            <View style={styles.itemRowContainer}>
-              <Text style={styles.itemTime}>{formatDuration(item.duracion)}hs</Text>
-            </View>
-        </View>
-        {/* </View>      */}
-        <View style={styles.itemRowContainerBtn}>
-            <View style={styles.itemRowContain}>
-                <Text style={styles.itemPrecio}>${item.precio}</Text>
-                <Text style={styles.itemPrecioPalabra}>/Por persona</Text>
-            </View>            
-            <TouchableOpacity
-                style={styles.itemBoton}
-                onPress={() => {}}>
-                <Text style={styles.itemTextoBoton}>Reservar</Text>
-             </TouchableOpacity>
-        </View>
+      {/* <View style={styles.mainContent}> */}
+        {activeButton === 'button1' && <GeneralContent item={item} />}
+        {activeButton === 'button2' && <DetalleContent item={item} />}
+        {activeButton === 'button3' && <ComentarioContent item={item} />}
+      {/* </View> */}
     </ScrollView>
   );
 };

@@ -29,7 +29,6 @@ export const TresBtnCard = () => {
 
   return (
     <View style={styles.container}>
-      
       <TouchableOpacity
         style={styles.itemBoton}
         onPress={irGeneral}>

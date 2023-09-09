@@ -3,7 +3,11 @@ import { Text, Pressable, View, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Entypo, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
+import {
+  useFonts,
+  Poppins_400Regular,
+  Poppins_600SemiBold,
+} from "@expo-google-fonts/poppins";
 import { styles } from "./RecorridoCard.styles";
 import { COLORS } from "./../../utils/theme";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
@@ -17,11 +21,12 @@ export const RecorridoCard = ({ item }) => {
   const { favorites, setFavorites } = useContext(FavoritesContext);
   let [fontsLoaded, fontError] = useFonts({
     Poppins_400Regular,
-    Poppins_600SemiBold
+    Poppins_600SemiBold,
   });
 
   useEffect(() => {
-    if (favorites.includes(item.id)) { // Verificar que 'item' esté definido
+    console.log("Inicial: ", favorites);
+    if (favorites.includes(item.id)) {
       setIsFavorite(true);
     }
   }, []);
@@ -29,7 +34,8 @@ export const RecorridoCard = ({ item }) => {
   useEffect(() => {
     const saveFavorites = async () => {
       try {
-        await AsyncStorage.setItem('favorites', JSON.stringify(favorites));
+        console.log("A guardar: ", favorites);
+        await AsyncStorage.setItem("favorites", JSON.stringify(favorites));
       } catch (error) {
         console.error(error);
       }
@@ -38,12 +44,13 @@ export const RecorridoCard = ({ item }) => {
   }, [favorites]);
 
   const toggleLike = () => {
+    console.log("Previo: ", favorites);
     setIsFavorite((prev) => !prev);
     setFavorites((prev) => {
-      if (prev.includes(item.id)) { // Verificar que 'item' esté definido
+      if (prev.includes(item.id)) {
         return prev.filter((id) => id !== item.id);
       }
-      return item ? [...prev, item.id] : prev; // Verificar que 'item' esté definido
+      return item ? [...prev, item.id] : prev;
     });
   };
 
@@ -52,7 +59,7 @@ export const RecorridoCard = ({ item }) => {
   }
 
   return (
-    <Pressable onPress={() => navigation.navigate('RecorridoDetail', { item })}>
+    <Pressable onPress={() => navigation.navigate("RecorridoDetail", { item })}>
       <View style={styles.itemContainer}>
         <View style={styles.imageContainer}>
           <Image source={{ uri: item.lugar.url }} style={styles.itemImage} />
@@ -75,7 +82,9 @@ export const RecorridoCard = ({ item }) => {
             <Text style={styles.itemLocalidad}>{item.lugar.localidad}</Text>
           </View>
           <View style={styles.itemRowContainer}>
-            <Text style={styles.itemTiempo}>{formatDuration(item.duracion)} hs</Text>
+            <Text style={styles.itemTiempo}>
+              {formatDuration(item.duracion)} hs
+            </Text>
             <Text style={styles.itemPrecio}>{item.precio} ARS</Text>
           </View>
           <View style={styles.itemRowContainer}>
@@ -84,11 +93,17 @@ export const RecorridoCard = ({ item }) => {
                 source={{ uri: item.lugar.url }}
                 style={styles.itemImgGuia}
               />
-              <Text style={styles.itemGuia}>{item.username ? item.username : 'Nombre no disponible'}</Text>
+              <Text style={styles.itemGuia}>
+                {item.username ? item.username : "Nombre no disponible"}
+              </Text>
             </View>
             <View style={styles.itemCalificacionContainer}>
               <Entypo name="star" size={16} color={COLORS.primary} />
-              <Text style={styles.itemCalificacion}>{calculateRating(item.calificaciones)}</Text>
+              <Text style={styles.itemCalificacion}>
+                {item.calificaciones.length > 0
+                  ? calculateRating(item.calificaciones)
+                  : 0}
+              </Text>
             </View>
           </View>
         </View>

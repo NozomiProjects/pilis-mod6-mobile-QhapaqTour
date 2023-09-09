@@ -8,6 +8,7 @@ import { RegionContext } from "../../contexts/RegionContext";
 export const ExploreScreen = ({ navigation }) => {
   const { region, setRegion } = useContext(RegionContext)
   const [data, setData] = useState([])
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('tabPress', (e) => {
@@ -23,18 +24,13 @@ export const ExploreScreen = ({ navigation }) => {
       .catch(error => console.warn(error))
   }, [])
 
-  //--Inicio codigo de busqueda
-  //1 -aqui busca el usuario principalmente ada
-  const [searchQuery, setSearchQuery] = useState('');
 
-  //4-aqui se setea lo del archivo SearchBar
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
   
   const filteredByRegion = data.filter(({ lugar }) => lugar.region.includes(region));
   
-  //2- a medida que vaya escribiendo el usuario se va a filtrar la ubicación por título
   const filteredLocations = filteredByRegion.filter((location) =>
     location.lugar.nombre.toLowerCase().includes(searchQuery.toLowerCase())
   );

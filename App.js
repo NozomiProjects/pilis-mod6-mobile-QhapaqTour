@@ -55,13 +55,12 @@ export default function App() {
                 <ListStack.Screen name='Register' component={RegisterScreen} />
                 <ListStack.Screen name='ModifyProfile' component={ModifyProfileNavigator} />
                 <ListStack.Screen name='Reservas' component={ReservasScreen} />
+                <ListStack.Screen name='RecorridoDetail' component={RecorridoDetailScreen} />
 
                 {/* <ListStack.Screen name='General' component={GeneralScreen} />                 
                 <ListStack.Screen name='Detalle' component={DetalleScreen} /> 
                 <ListStack.Screen name='Comentarios' component={ComentariosScreen} />  */}
 
-                <ListStack.Screen name='RecorridoDetail' component={RecorridoDetailScreen} />
-                {/* <ListStack.Screen name='RecorridoDetail' component={RecorridoDetailScreen} /> */}
                 {/* Pantallas con Tab */}
                 <ListStack.Screen name="Main" component={MainStackScreen} />
 

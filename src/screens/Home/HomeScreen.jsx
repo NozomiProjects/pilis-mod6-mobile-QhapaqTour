@@ -66,7 +66,7 @@ export const HomeScreen = ({ navigation }) => {
             <Text style={styles.regionText}>Puna</Text>
           </View>
         </Pressable>
-        <Pressable onPress={() => handleNavigate('VALLE')}>
+        <Pressable onPress={() => handleNavigate('VALLES')}>
           <View style={styles.regionItem}>
             <Image
               source={require("../../../assets/images/valles.jpg")}
@@ -79,10 +79,10 @@ export const HomeScreen = ({ navigation }) => {
       </View>
 
       <Text style={styles.title}>Recientes</Text>
-      <RecorridoList recorridos={recorridos} recents />
+      <RecorridoList recorridos={recorridos} recents={true} />
 
       <Text style={styles.title}>Más votados</Text>
-      <RecorridoList recorridos={recorridos} />
+      <RecorridoList recorridos={recorridos} recents={false} />
     </SafeAreaView>
   );
 };

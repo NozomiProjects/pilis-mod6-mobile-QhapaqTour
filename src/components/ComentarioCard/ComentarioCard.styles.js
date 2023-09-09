@@ -1,13 +1,16 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet, StatusBar } from "react-native";
+import { COLORS, SPACING } from "../../utils/theme";
 
 export const styles = StyleSheet.create({
-    container: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: 10,
-      marginTop:33,
-    },
- 
-  });
-  
+  container: {
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+    backgroundColor: COLORS.white,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.grey
+  },
+  text: {
+    fontSize: 20
+  }
+
+});
