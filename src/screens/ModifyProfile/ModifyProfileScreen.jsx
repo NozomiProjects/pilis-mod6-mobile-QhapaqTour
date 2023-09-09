@@ -12,7 +12,7 @@ export const ModifyProfileScreen = () => {
     const [formData, setFormData] = useState({
         email: currentUser.email,
         username: currentUser.username,
-        password: '',
+        password: currentUser.password,
         apellido: currentUser.apellido,
         nombre: currentUser.nombre,
         dni: currentUser.dni,
