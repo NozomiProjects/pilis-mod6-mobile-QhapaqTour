@@ -19,6 +19,7 @@ import {
 } from "./src/contexts/FavoritesContext";
 import { RegionProvider } from "./src/contexts/RegionContext";
 import { ModifyProfileNavigator } from './src/screens/ModifyProfile/ModifyProfileNavigator.jsx';
+import { ReservasScreen } from "./src/screens/Reservas/ReservasScreen";
 
 
 
@@ -52,6 +53,7 @@ export default function App() {
                 <ListStack.Screen name='LoginScreen' component={LoginScreen} />
                 <ListStack.Screen name='Register' component={RegisterScreen} />
                 <ListStack.Screen name='ModifyProfile' component={ModifyProfileNavigator} />
+                <ListStack.Screen name='Reservas' component={ReservasScreen} />
 
                 {/* Pantallas con Tab */}
                 <ListStack.Screen name="Main" component={MainStackScreen} />
