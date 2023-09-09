@@ -2,14 +2,17 @@ import React, { createContext, useState, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Importa AsyncStorage
 
 export const UserContext = createContext({
-    currentUser: null,
+    currentUser: {},
+    credentials: {},
     userId: null,
     setCurrentUser: () => { },
+    setCredentials: () => { },
 });
 
 
 export const UserProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
+    const [credentials, setCredentials] = useState(null);
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
@@ -30,8 +33,10 @@ export const UserProvider = ({ children }) => {
 
     const value = {
         currentUser,
+        credentials,
         userId,
         setCurrentUser,
+        setCredentials
     };
 
     return (

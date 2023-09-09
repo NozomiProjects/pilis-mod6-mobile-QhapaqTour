@@ -51,8 +51,6 @@ export const login = async (data) => {
       throw new Error('Token no encontrado en la respuesta.');
     }
   } catch (error) {
-    console.error(error);
-    console.error('Error during login request:', error);
     throw error;
   }
 };

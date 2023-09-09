@@ -27,7 +27,7 @@ export const RecorridoList = ({ recorridos, recents, navigation }) => {
             <RecorridoCard item={item} />
           )
         )}
-        keyExtractor={(item) => item.idRecorrido.toString()} // Utiliza "idRecorrido" como el identificador
+        keyExtractor={(item) => item.id} // Utiliza "idRecorrido" como el identificador
         horizontal={recents}
         showsHorizontalScrollIndicator={false}
         style={recents ? null : styles.itemList} // Aplica el estilo solo cuando recents sea falso

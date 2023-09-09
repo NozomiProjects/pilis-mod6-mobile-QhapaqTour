@@ -8,11 +8,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
 export const ModifyProfileScreen = () => {
-    const { currentUser, setCurrentUser } = useContext(UserContext);
+    const { currentUser, credentials } = useContext(UserContext);
     const [formData, setFormData] = useState({
         email: currentUser.email,
         username: currentUser.username,
-        password: '',
+        password: currentUser.password,
         apellido: currentUser.apellido,
         nombre: currentUser.nombre,
         dni: currentUser.dni,
@@ -24,8 +24,7 @@ export const ModifyProfileScreen = () => {
     const handleInputChange = (field, value) => {
         setFormData({
             ...formData,
-            [field]: value,
-            rol: 'cliente', // O el valor correcto que deba ir aquí
+            [field]: value
         });
     };
 
@@ -35,10 +34,10 @@ export const ModifyProfileScreen = () => {
             const userId = await AsyncStorage.getItem('userId');
 
             // Realizar la solicitud PUT para actualizar la información del usuario
-            const updatedUser = await updateUserInfo(userId, formData, currentUser.token);
+            const updatedUser = await updateUserInfo(userId, formData, credentials.token.token);
 
             // Actualiza el contexto con los nuevos datos del usuario
-            setCurrentUser(updatedUser);
+            // setCurrentUser(updatedUser);
 
             // Muestra una alerta indicando que el usuario ha sido modificado con éxito
             Alert.alert('Éxito', 'Usuario modificado con éxito.', [

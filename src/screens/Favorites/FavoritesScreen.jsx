@@ -16,7 +16,7 @@ export const FavoritesScreen = () => {
   }, []);
 
   // Filtra los recorridos favoritos que están en los datos disponibles
-  const filteredRecorridos = data.filter((recorrido) => favorites.includes(recorrido.idRecorrido));
+  const filteredRecorridos = data.filter((recorrido) => favorites.includes(recorrido.id));
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,7 +29,7 @@ export const FavoritesScreen = () => {
           renderItem={({ item }) => (
             <RecorridoCard item={item} />
           )}
-          keyExtractor={(item) => (item.idRecorrido ? item.idRecorrido.toString() : null)} // Manejo de elementos sin id
+          keyExtractor={(item) => item.id} // Manejo de elementos sin id
           style={styles.itemList}
         />
       ) : (

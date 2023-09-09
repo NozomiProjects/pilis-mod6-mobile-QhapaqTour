@@ -31,7 +31,6 @@ export default function App() {
     const getFavorites = async () => {
       try {
         const favoritesJSON = await AsyncStorage.getItem("favorites");
-        console.warn({ favoritesJSON });
         if (favoritesJSON) {
           setFavorites(JSON.parse(favoritesJSON));
         }

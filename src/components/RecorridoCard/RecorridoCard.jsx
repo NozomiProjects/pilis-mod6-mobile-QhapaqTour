@@ -12,10 +12,10 @@ import { FavoritesContext } from "../../contexts/FavoritesContext";
 const formatDuration = (duration) => Math.floor(duration / 1000 / 60 / 60);
 
 const calculateRating = (ratings) => {
-  if (!ratings || ratings.length === 0) {
-    return 0; // Handle the case where there are no ratings.
-  }
-  const totalRating = ratings.reduce((accumulator, calificacion) => accumulator + calificacion.note, 0);
+  // if (!ratings || ratings.length === 0) {
+  //   return 0; // Handle the case where there are no ratings.
+  // }
+  const totalRating = ratings.reduce((accumulator, calificacion) => accumulator + calificacion.nota, 0);
   return totalRating / ratings.length;
 };
 
@@ -29,16 +29,15 @@ export const RecorridoCard = ({ item }) => {
   });
 
   useEffect(() => {
-    if (item && favorites.includes(item.idRecorrido)) { // Verificar que 'item' esté definido
+    if (favorites.includes(item.id)) { // Verificar que 'item' esté definido
       setIsFavorite(true);
     }
-  }, [item]);
+  }, []);
 
   useEffect(() => {
     const saveFavorites = async () => {
       try {
         await AsyncStorage.setItem('favorites', JSON.stringify(favorites));
-        console.warn(favorites);
       } catch (error) {
         console.error(error);
       }
@@ -49,10 +48,10 @@ export const RecorridoCard = ({ item }) => {
   const toggleLike = () => {
     setIsFavorite((prev) => !prev);
     setFavorites((prev) => {
-      if (item && prev.includes(item.idRecorrido)) { // Verificar que 'item' esté definido
-        return prev.filter((id) => id !== item.idRecorrido);
+      if (prev.includes(item.id)) { // Verificar que 'item' esté definido
+        return prev.filter((id) => id !== item.id);
       }
-      return item ? [...prev, item.idRecorrido] : prev; // Verificar que 'item' esté definido
+      return item ? [...prev, item.id] : prev; // Verificar que 'item' esté definido
     });
   };
 

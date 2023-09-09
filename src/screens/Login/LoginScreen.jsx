@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const LoginScreen = () => {
   const navigation = useNavigation();
-  const { setCurrentUser, setUserId } = useContext(UserContext); // Obtener setters del contexto
+  const { setCredentials, setUserId } = useContext(UserContext); // Obtener setters del contexto
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -35,10 +35,10 @@ export const LoginScreen = () => {
 
       if (response.token.token) {
         // Guardar el ID del usuario en AsyncStorage
-        await AsyncStorage.setItem('userId', response.user.id.toString());
+        await AsyncStorage.setItem('userId', JSON.stringify(response.user.id));
 
-        setCurrentUser({
-          token: response.token.token, // Aquí corregido
+        setCredentials({
+          token: response.token, // Aquí corregido
           user: response.user, // Esto incluye el ID del usuario
         });
         navigation.navigate('Main', { screen: 'Home' });
@@ -46,8 +46,6 @@ export const LoginScreen = () => {
         Alert.alert('Error', 'Credenciales inválidas. Por favor, intenta nuevamente.');
       }
     } catch (error) {
-      console.error('Error during login:', error);
-
       if (error.response && error.response.data && error.response.data.message) {
         Alert.alert('Error', error.response.data.message);
       } else {

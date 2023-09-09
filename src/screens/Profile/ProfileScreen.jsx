@@ -5,11 +5,11 @@ import { LoginScreen } from "../Login/LoginScreen";
 import { WelcomeScreen } from "../Welcome/WelcomeScreen";
 
 export const ProfileScreen = () => {
-  const { currentUser } = useContext(UserContext)
+  const { credentials } = useContext(UserContext)
 
   return (
     <>
-      {currentUser ? <WelcomeScreen /> : <LoginScreen />}
+      {credentials ? <WelcomeScreen /> : <LoginScreen />}
     </>
   );
 };

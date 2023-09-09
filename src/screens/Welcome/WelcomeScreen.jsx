@@ -7,8 +7,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native'; // Importa el hook useNavigation
 
 export const WelcomeScreen = () => {
-  const [userData, setUserData] = useState(null);
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  // const [userData, setUserData] = useState(null);
+  const { currentUser, setCurrentUser, setCredentials } = useContext(UserContext);
   const navigation = useNavigation(); // Obtiene el objeto de navegación
 
   const handleLogout = async () => {
@@ -19,7 +19,7 @@ export const WelcomeScreen = () => {
       await AsyncStorage.removeItem('userEmail');
 
       // Limpia los datos en el contexto
-      setCurrentUser(null);
+      setCredentials(null);
     } catch (error) {
       console.error('Error during logout:', error);
     }
@@ -33,7 +33,7 @@ export const WelcomeScreen = () => {
         if (userId) {
           // Obtiene los datos del usuario utilizando el ID
           const fetchedUserData = await getUserInfo(userId);
-          setUserData(fetchedUserData);
+          setCurrentUser(fetchedUserData);
         }
       } catch (error) {
         console.error(error);
@@ -45,12 +45,12 @@ export const WelcomeScreen = () => {
 
   const handleFavorites = () => {
     // Navegar a la pantalla FavoritesScreen aquí.
-    navigation.navigate('FavoritesScreen');
+    navigation.navigate('Favorites');
   };
 
   const handleReservas = () => {
     // Navegar a la pantalla ReservasScreen aquí.
-    navigation.navigate('ReservasScreen');
+    navigation.navigate('Reservas');
   };
 
   const handleModificarPerfil = () => {
@@ -60,10 +60,10 @@ export const WelcomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      {userData ? ( // Verifica si userData se ha cargado
+      {currentUser ? ( // Verifica si userData se ha cargado
         <>
-          <Text>¡Bienvenido/a, {userData.nombre || 'Usuario'}!</Text>
-          <Text>Correo electrónico: {userData.email || 'No disponible'}</Text>
+          <Text>¡Bienvenido/a, {currentUser.nombre || 'Usuario'}!</Text>
+          <Text>Correo electrónico: {currentUser.email || 'No disponible'}</Text>
         </>
       ) : (
         <Text>Cargando datos...</Text>
