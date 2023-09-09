@@ -11,9 +11,9 @@ export const RecorridoList = ({ recorridos, recents, navigation }) => {
   }).slice(0, 5);
 
   const mostRecommended = recorridos.sort((recorridoA, recorridoB) => {
-    let noteA = recorridoA.calificaciones.reduce((acc, current) => acc + current.note, 0) / recorridoA.calificaciones.length;
-    let noteB = recorridoB.calificaciones.reduce((acc, current) => acc + current.note, 0) / recorridoB.calificaciones.length;
-    return -(noteA - noteB);
+    let notaA = recorridoA.calificaciones.reduce((acc, current) => acc + current.nota, 0) / recorridoA.calificaciones.length;
+    let notaB = recorridoB.calificaciones.reduce((acc, current) => acc + current.nota, 0) / recorridoB.calificaciones.length;
+    return -(notaA - notaB);
   }).slice(0, 5);
 
   return (

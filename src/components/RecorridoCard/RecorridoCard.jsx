@@ -3,21 +3,13 @@ import { Text, Pressable, View, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Entypo, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 import { styles } from "./RecorridoCard.styles";
 import { COLORS } from "./../../utils/theme";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
+import { calculateRating } from "../../utils/rating";
 
 const formatDuration = (duration) => Math.floor(duration / 1000 / 60 / 60);
-
-const calculateRating = (ratings) => {
-  // if (!ratings || ratings.length === 0) {
-  //   return 0; // Handle the case where there are no ratings.
-  // }
-  const totalRating = ratings.reduce((accumulator, calificacion) => accumulator + calificacion.nota, 0);
-  return totalRating / ratings.length;
-};
 
 export const RecorridoCard = ({ item }) => {
   const navigation = useNavigation();

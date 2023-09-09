@@ -9,12 +9,7 @@ import {
 import { styles } from "./RecorridoCardVertical.styles";
 import { COLORS } from "./../../utils/theme";
 import { useNavigation } from "@react-navigation/native";
-
-const calculateRating = (rating) =>
-  rating.reduce(
-    (accumulator, calificacion) => accumulator + calificacion.nota,
-    0
-  ) / rating.length;
+import { calculateRating } from "../../utils/rating";
 
 export const RecorridoCardVertical = ({ item }) => {
   const navigation = useNavigation();

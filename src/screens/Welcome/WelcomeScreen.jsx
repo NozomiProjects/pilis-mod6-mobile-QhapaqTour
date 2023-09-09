@@ -7,7 +7,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native'; // Importa el hook useNavigation
 
 export const WelcomeScreen = () => {
-  // const [userData, setUserData] = useState(null);
   const { currentUser, setCurrentUser, setCredentials } = useContext(UserContext);
   const navigation = useNavigation(); // Obtiene el objeto de navegación
 

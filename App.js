@@ -20,11 +20,12 @@ import {
 import { RegionProvider } from "./src/contexts/RegionContext";
 import { ModifyProfileNavigator } from './src/screens/ModifyProfile/ModifyProfileNavigator.jsx';
 import { ReservasScreen } from "./src/screens/Reservas/ReservasScreen";
-
-
+/*import { GeneralScreen } from "./src/screens/General/GeneralScreen";
+import {DetalleScreen} from "./src/screens/Detalle/DetalleScreen";
+import {ComentariosScreen} from "./src/screens/Comentario/ComentariosScreen";
+*/
 
 const ListStack = createNativeStackNavigator();
-
 export default function App() {
   const { setFavorites } = useContext(FavoritesContext);
 
@@ -55,10 +56,15 @@ export default function App() {
                 <ListStack.Screen name='ModifyProfile' component={ModifyProfileNavigator} />
                 <ListStack.Screen name='Reservas' component={ReservasScreen} />
 
+                {/* <ListStack.Screen name='General' component={GeneralScreen} />                 
+                <ListStack.Screen name='Detalle' component={DetalleScreen} /> 
+                <ListStack.Screen name='Comentarios' component={ComentariosScreen} />  */}
+
+                <ListStack.Screen name='RecorridoDetail' component={RecorridoDetailScreen} />
+                {/* <ListStack.Screen name='RecorridoDetail' component={RecorridoDetailScreen} /> */}
                 {/* Pantallas con Tab */}
                 <ListStack.Screen name="Main" component={MainStackScreen} />
 
-                <ListStack.Screen name='RecorridoDetail' component={RecorridoDetailScreen} />
               </ListStack.Navigator>
             </NavigationContainer>
           </RegionProvider>
