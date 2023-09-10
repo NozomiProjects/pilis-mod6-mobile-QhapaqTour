@@ -77,7 +77,6 @@ export const ReservacionFechaHora = () => {
                   </View>
                 </TouchableOpacity>
 
-
                 <View style={styles.controls}>
                 <TouchableOpacity onPress={increaseValue} style={styles.controlButton}>
                     <Text style={styles.controlButtonText}>^</Text>
@@ -85,11 +84,9 @@ export const ReservacionFechaHora = () => {
                   <TouchableOpacity onPress={decreaseValue} style={styles.controlButton}>
                     <Text style={styles.controlButtonTextB}>v</Text>
                   </TouchableOpacity>
-                  
+          
                 </View>
               </View>
-
-
     </SafeAreaView>  
   );
 };

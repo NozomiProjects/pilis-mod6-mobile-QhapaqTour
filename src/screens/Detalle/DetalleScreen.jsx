@@ -8,9 +8,9 @@ import {TresBtnCard} from "./../../components/TresBtnCard/TresBtnCard";
 export const DetalleScreen =()=>{
 return(
     <View styles={styles.container}>
-        <HeadCard styles={styles.carComentario}/>
-        <TresBtnCard/>        
-        <DetalleCard styles={styles.carComentario}/>
+          <HeadCard styles={styles.carComentario}/>
+           <TresBtnCard/>        
+         <DetalleCard styles={styles.carComentario}/>
     </View>
 );  
 }

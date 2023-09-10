@@ -1,5 +1,5 @@
 import {Calendar,LocaleConfig} from 'react-native-calendars';
-import React, {useState} from 'react';
+import React from 'react';
 import { View,SafeAreaView,Text } from 'react-native';
 import { styles } from './ExploreScreen.style';
 import {ReservacionBtnCard} from './../../components/ReservacionBtnCard/ReservacionBtnCard';

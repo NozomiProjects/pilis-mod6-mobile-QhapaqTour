@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       padding: 10,
-      marginTop:33,
+      marginTop:"1%",
     },
     itemEntrada: {
       flex: 1,
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
       borderColor: 'gray',
       borderRadius: 20,
       paddingHorizontal: 10,
-      marginRight: 20,
+      marginRight: 10,
     },
     itemBoton: {
       backgroundColor: COLORS.primary, // Cambia el color de fondo según tus preferencias

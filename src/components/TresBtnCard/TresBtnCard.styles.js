@@ -8,6 +8,7 @@ import { COLORS } from '../../utils/theme';
         justifyContent: 'center',
         padding: 10,
         marginTop:33,
+        marginBottom:"0%",
       },
       itemEntrada: {
         flex: 1,

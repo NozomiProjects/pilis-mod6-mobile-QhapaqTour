@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, {  useState }  from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { View,TouchableOpacity, Text} from 'react-native';
 import { styles } from './ReservacionBtnCard.styles';
 
 export const ReservacionBtnCard = () => {
+  
+  const navigation = useNavigation();
 //  bOTON RESRVA 
-const [reservar,setReservar ] = useState('');
-const irReservar = () => {
-  // Aquí puedes realizar acciones con el comentario ingresado, como enviarlo a un servidor.
-  console.log('llendo a Reservar:', reservar);
-  // También puedes borrar el texto después de enviarlo si lo deseas.
-  setReservar('');
+const [ReservaScreen,setReserva ] = useState([]);
+
+const irReserva = () => {
+  console.log('llendo a Reservar:', ReservaScreen);
+ // navigation.navigate('Reserva');
+  setReserva('');
 };
+
 return (
   <View style={styles.container}> 
 
@@ -22,8 +26,7 @@ return (
                     <Text style={styles.itemPrecio}>$8000</Text>
                 </View>            
                     <TouchableOpacity
-                        style={styles.itemBoton}
-                        onPress={irReservar}>
+                        style={styles.itemBoton} onPress={irReserva}>
                         <Text style={styles.itemTextoBoton}>Reservar</Text>
                     </TouchableOpacity>
      </View> 
