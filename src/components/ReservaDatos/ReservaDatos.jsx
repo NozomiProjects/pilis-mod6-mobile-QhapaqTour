@@ -57,22 +57,12 @@ const irReservar = () => {
     // Puedes establecer un límite máximo si lo deseas, por ejemplo, 10 personas.
     // if (count < 10) {
     setCount(count + 1);
-    }
-
-
-
-
- 
+    } 
   return (
     <View style={styles.container}> 
         <Text style={styles.itemTitulo}> San Francisco </Text>
 
-
         <Text style={styles.itemSubTitulo}>Selecciona la fecha</Text>
-        
-
-
-
 
           {/*FECHA Y HORA  */}
         <Text style={styles.itemSubTitulo}>Selecciona el horario</Text>
