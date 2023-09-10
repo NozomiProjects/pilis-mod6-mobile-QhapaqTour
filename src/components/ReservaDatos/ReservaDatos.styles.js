@@ -147,7 +147,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom:7,
     paddingTop:7,
-    backgroundColor:COLORS.white, 
+    backgroundColor:COLORS.white,
+
+   
   },  
   itemBoton: {
     backgroundColor: COLORS.primary, // Cambia el color de fondo según tus preferencias
