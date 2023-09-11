@@ -12,8 +12,6 @@ export const CometarioBtnCard = () => {
     // También puedes borrar el texto después de enviarlo si lo deseas.
     setComentario('');
   };
-
-
   
 /**VENTANA MODAL */
 const [modalVisible, setModalVisible] = useState(false);
