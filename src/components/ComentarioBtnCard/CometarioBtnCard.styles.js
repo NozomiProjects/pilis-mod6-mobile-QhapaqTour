@@ -8,6 +8,9 @@ export const styles = StyleSheet.create({
       justifyContent: 'center',
       padding: 10,
       marginTop:"1%",
+      borderWidth:1,
+      borderColor:COLORS.inactive,
+      backgroundColor:COLORS.grey
     },
     itemEntrada: {
       flex: 1,
@@ -23,6 +26,7 @@ export const styles = StyleSheet.create({
       paddingVertical: 10,
       paddingHorizontal: 20,
     },
+ 
     itemTextoBoton: {
       color: 'white', // Cambia el color del texto según tus preferencias
       textAlign: 'center',

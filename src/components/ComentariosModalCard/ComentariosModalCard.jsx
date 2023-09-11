@@ -24,11 +24,14 @@ export const ComentariosModalCard = ({ visible, onClose }) => {
   const handlePublish = () => {
     // Implementa la lógica para publicar la calificación y el comentario.
     // Luego, cierra el modal y restablece el estado.
+    console.log('Comentario enviado:', comment);
+    console.log('Calificación enviada:', rating);
+
     setRating(0);
     setComment('');
     onClose();
   };
-
+  
   return (
     <Modal transparent visible={visible} animationType="slide">
       <View style={styles.modalContainer}>

@@ -36,11 +36,12 @@ const toggleModal = () => {
         <Text style={styles.itemTextoBoton}>Publicar</Text>
   </TouchableOpacity>*/}
         {/** */}
+        <View style={styles.itemFilaBtnComentario}>
               <TouchableOpacity  style={styles.itemBoton} onPress={toggleModal}>
-                  <Text>Escribe Una opinión</Text>
+                  <Text style={styles.itemTextoBoton}>Escribe Una opinión</Text>
               </TouchableOpacity>
       <ComentariosModalCard visible={modalVisible} onClose={toggleModal} />
-
+      </View>
 
      </View>
   );

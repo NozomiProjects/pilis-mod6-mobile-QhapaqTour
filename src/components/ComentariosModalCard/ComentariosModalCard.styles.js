@@ -10,10 +10,10 @@ export const styles = StyleSheet.create({
   },
   innerContainer: {
     backgroundColor: 'white',
-    width: '70%',
+    width: '200',
     aspectRatio: 2 / 3,
     padding: 7,
-    height:'40%',
+    height:'150',
     borderRadius:10,
   },
   title: {
