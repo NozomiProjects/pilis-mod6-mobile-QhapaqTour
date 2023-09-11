@@ -1,8 +1,8 @@
-import { View, Text, ImageBackground ,Button} from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from './HeadCard.styles';
 import React from 'react';
-
+ 
 export const HeadCard=()=> {
   return (
         <View style={styles.container}>
