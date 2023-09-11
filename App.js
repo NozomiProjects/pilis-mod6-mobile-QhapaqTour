@@ -55,6 +55,8 @@ export default function App() {
                 <ListStack.Screen name='ModifyProfile' component={ModifyProfileNavigator} />
                 <ListStack.Screen name='Reservas' component={ReservasScreen} />
 
+
+
                 {/* Pantallas con Tab */}
                 <ListStack.Screen name="Main" component={MainStackScreen} />
 
