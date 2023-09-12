@@ -28,12 +28,12 @@ export const styles = StyleSheet.create({
       itemCupos: {
         marginBottom: 1,
         marginHorizontal: 0,
-        fontSize:18,
+        fontSize:16,
         paddingLeft:'7%',
         marginLeft:1,
       },
       itemCupoCantidad: {   
-        fontSize: 18,
+        fontSize: 16,
         color: COLORS.secondary,
         marginRight:'7%',
         marginLeft:'70%',
@@ -44,13 +44,13 @@ export const styles = StyleSheet.create({
         marginRight:'1%'
       },
       itemDuracion: {
-        fontSize: 18,
+        fontSize: 16,
         marginRight: '30%',
         marginLeft:1,
         color: 'black',
       },
       itemTime: {   
-        fontSize: 18,
+        fontSize: 16,
         color: COLORS.secondary
       },
     itemRowContainer: {
@@ -72,19 +72,32 @@ export const styles = StyleSheet.create({
       itemRowContainerBtn:{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: '30%',
+        marginTop: '41%',
         verticalAlign: 'bottom',
         alignItems: 'center',
-        marginRight:'7%',
+       borderColor:COLORS.grey,
+        padding:'5%',
+        borderWidth:1,
     
       },
+      itemBoton: {
+        backgroundColor: COLORS.primary, // Cambia el color de fondo según tus preferencias
+        borderRadius: 50, // Establece el radio de borde para hacerlo muy redondeado
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        marginLeft:7,
+      },
+      itemTextoBoton: {
+        color: 'white', // Cambia el color del texto según tus preferencias
+        textAlign: 'center',
+        fontSize: 13,
+      },
       itemPrecio:{
-        fontSize:27,
-        fontWeight:'bold',
-    },
+          fontSize:25,          
+          fontWeight:'bold',
+         },
     itemPrecioPalabra:{
         fontSize:12,
-
        },
 }
 )

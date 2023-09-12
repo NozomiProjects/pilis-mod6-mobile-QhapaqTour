@@ -1,10 +1,18 @@
-import { View,Image,Button, Text,SafeAreaView} from 'react-native';
+import { View,Image,TouchableOpacity, Text, SafeAreaView} from 'react-native';
 import { styles } from './GeneralCard.styles';
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
-import React from 'react';
-import { COLORS } from '../../utils/theme';
+import React, { useState } from 'react';
 
-export default function GeneralCard() {
+ export const GeneralCard = () => {
+
+    const [reservar,setReservar ] = useState('');
+
+    const irReservar = () => {
+      // Aquí puedes realizar acciones con el comentario ingresado, como enviarlo a un servidor.
+      console.log('llendo a Reservar:', reservar);
+      // También puedes borrar el texto después de enviarlo si lo deseas.
+      setReservar('');
+    };
   return (
     <SafeAreaView styles={styles.container}>
         <View style={styles.itemRowContain}>
@@ -13,7 +21,7 @@ export default function GeneralCard() {
              style={styles.itemImgGuia}
              />
 
-            <Text style={styles.itemGuia}>Yonalda Rivas</Text>
+            <Text style={styles.itemGuia}>Juanita Rivas</Text>
         </View>
         <View style={styles.itemRowContain}>
             <MaterialCommunityIcons name="ticket-account" size={37} color="black" />
@@ -30,16 +38,18 @@ export default function GeneralCard() {
             <Text style={styles.itemDuracion}>Duración</Text>
             <Text style={styles.itemTime}>8 horas</Text>
         </View>     
+
         <View style={styles.itemRowContainerBtn}>
             <View style={styles.itemRowContain}>
                 <Text style={styles.itemPrecio}>$8000</Text>
                 <Text style={styles.itemPrecioPalabra}>/Precio</Text>
-            </View>            
-            <Button style={styles.itemPrecio} 
-            color={COLORS.primary}
-            title="Reservar"
-            />
-        </View>     
+            </View>          
+                    <TouchableOpacity
+                        style={styles.itemBoton}
+                        onPress={irReservar}>
+                        <Text style={styles.itemTextoBoton}>Reservar</Text>
+                    </TouchableOpacity>
+     </View> 
 
     </SafeAreaView>
   );
