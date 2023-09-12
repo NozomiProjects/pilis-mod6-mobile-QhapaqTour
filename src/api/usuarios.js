@@ -13,7 +13,7 @@ export const signUp = async (data) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ ...data, rol: 'cliente' })
+      body: JSON.stringify({ ...data, rol: 'CLIENTE' })
     })
     const result = await response.json()
     if (!response.ok) {

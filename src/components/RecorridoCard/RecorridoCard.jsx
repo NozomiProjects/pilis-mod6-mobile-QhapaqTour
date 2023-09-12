@@ -12,8 +12,7 @@ import { styles } from "./RecorridoCard.styles";
 import { COLORS } from "./../../utils/theme";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
 import { calculateRating } from "../../utils/rating";
-
-const formatDuration = (duration) => Math.floor(duration / 1000 / 60 / 60);
+import { formatDuration } from "../../utils/format";
 
 export const RecorridoCard = ({ item }) => {
   const navigation = useNavigation();
@@ -100,9 +99,7 @@ export const RecorridoCard = ({ item }) => {
             <View style={styles.itemCalificacionContainer}>
               <Entypo name="star" size={16} color={COLORS.primary} />
               <Text style={styles.itemCalificacion}>
-                {item.calificaciones.length > 0
-                  ? calculateRating(item.calificaciones)
-                  : 0}
+                {calculateRating(item.calificaciones) || 0}
               </Text>
             </View>
           </View>

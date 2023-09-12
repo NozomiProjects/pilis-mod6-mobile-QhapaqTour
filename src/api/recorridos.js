@@ -17,3 +17,19 @@ export const getRecorridos = async () => {
     throw error
   }
 }
+
+export const getComentariosByRecorrido = async (id) => {
+  try {
+    const response = await fetch(`${RECORRIDOS_URL}/${id}/comments`)
+    const result = await response.json()
+
+    if (!response.ok) {
+      throw result
+    }
+    
+    return result
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}

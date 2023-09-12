@@ -3,8 +3,7 @@ import { styles } from "./GeneralContent.styles";
 import { MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
 import React from "react";
 import { COLORS } from "../../utils/theme";
-
-const formatDuration = (duration) => Math.floor(duration / 1000 / 60 / 60);
+import { formatDuration } from "../../utils/format";
 
 export const GeneralContent = ({ item }) => {
   return (

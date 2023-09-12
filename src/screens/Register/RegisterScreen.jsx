@@ -41,7 +41,7 @@ export const RegisterScreen = () => {
 
   const handleClose = () => {
     setModalVisible(false);
-    navigation.navigate('Profile');
+    navigation.navigate('Main', { screen: 'Profile' });
   }
 
   return (

@@ -21,8 +21,6 @@ import { GeneralContent } from "../../components/GeneralContent/GeneralContent";
 import { DetalleContent } from "../../components/DetalleContent/DetalleContent";
 import { ComentarioContent } from "../../components/ComentarioContent/ComentarioContent";
 
-const formatDuration = (duration) => Math.floor(duration / 1000 / 60 / 60);
-
 export const RecorridoDetailScreen = ({ route }) => {
   const { item } = route.params;
   const [activeButton, setActiveButton] = useState("button1");
@@ -53,7 +51,7 @@ export const RecorridoDetailScreen = ({ route }) => {
                   style={styles.starIcon}
                 />
                 <Text style={styles.rating}>
-                  {calculateRating(item.calificaciones)}
+                  {calculateRating(item.calificaciones) || 0}
                 </Text>
               </View>
               <View style={styles.rightContainer}>

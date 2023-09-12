@@ -32,9 +32,7 @@ export const RecorridoCardVertical = ({ item }) => {
           <View style={styles.itemCalificacionContainer}>
             <Entypo name="star" size={16} color={COLORS.primary} />
             <Text style={styles.itemCalificacion}>
-              {item.calificaciones.length > 0
-                ? calculateRating(item.calificaciones)
-                : 0}
+              {calculateRating(item.calificaciones) || 0}
             </Text>
           </View>
         </View>
