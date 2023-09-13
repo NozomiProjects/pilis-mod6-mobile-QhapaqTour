@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { ComentarioCard } from "../ComentarioCard/ComentarioCard";
 import { styles } from "./ComentarioContent.styles";
-import { getComentariosByRecorrido } from "../../api/recorridos";
-import { UserContext } from "../../contexts/UserContext";
-import { ComentarioModal } from "../ComentarioModal/ComentarioModal";
+import { ComentarioCard } from "../../ComentarioCard/ComentarioCard";
+import { ComentarioModal } from "../../ComentarioModal/ComentarioModal";
+import { getComentariosByRecorrido } from "../../../api/recorridos";
+import { UserContext } from "../../../contexts/UserContext";
 
 export const ComentarioContent = ({ item }) => {
   const { credentials } = useContext(UserContext);

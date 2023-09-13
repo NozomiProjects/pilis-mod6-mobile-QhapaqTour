@@ -1,6 +1,6 @@
 export { AmountSelector } from "./AmountSelector/AmountSelector";
-export { ComentarioContent } from "./ComentarioContent/ComentarioContent";
-export { DetalleContent } from "./DetalleContent/DetalleContent";
+export { ComentarioContent } from "./RecorridoDetails/ComentarioContent/ComentarioContent";
+export { DetalleContent } from "./RecorridoDetails/DetalleContent/DetalleContent";
 export { GeneralContent } from "./RecorridoDetails/GeneralContent/GeneralContent";
 export { ModalInfo } from "./ModalInfo/ModalInfo";
 export { RecorridoCard } from "./RecorridoCard/RecorridoCard";
