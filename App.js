@@ -68,6 +68,8 @@ export default function App() {
                 <ListStack.Screen name='NewReserva' component={NewReservaScreen} />
                 <ListStack.Screen name='RecorridoDetail' component={RecorridoDetailScreen} />
 
+
+
                 {/* Pantallas con Tab */}
                 <ListStack.Screen name="Main" component={MainStackScreen} />
 

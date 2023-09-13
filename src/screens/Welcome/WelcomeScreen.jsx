@@ -19,6 +19,7 @@ export const WelcomeScreen = () => {
 
       // Limpia los datos en el contexto
       setCredentials(null);
+      setCurrentUser(null);
     } catch (error) {
       console.error('Error during logout:', error);
     }
