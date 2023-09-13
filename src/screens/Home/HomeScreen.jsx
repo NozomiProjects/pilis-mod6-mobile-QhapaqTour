@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Image, Pressable, SafeAreaView, Text, View } from "react-native";
-import { useFonts, Poppins_600SemiBold, Poppins_800ExtraBold } from "@expo-google-fonts/poppins";
 import { styles } from "./HomeScreen.styles";
 import { RecorridoList } from "../../components/RecorridoList/RecorridoList";
 import { getRecorridos } from "../../api/recorridos";
@@ -22,15 +21,6 @@ export const HomeScreen = ({ navigation }) => {
       })
       .catch((error) => console.warn(error));
   }, []);
-
-  let [fontsLoaded, fontError] = useFonts({
-    Poppins_600SemiBold,
-    Poppins_800ExtraBold,
-  });
-
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
 
   return (
     <SafeAreaView style={styles.container}>

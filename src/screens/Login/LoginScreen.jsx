@@ -8,12 +8,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const LoginScreen = () => {
   const navigation = useNavigation();
-  const { setCredentials, setUserId } = useContext(UserContext); // Obtener setters del contexto
+  const { setCredentials, setUserId } = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const goToMainScreen = () => {
-    navigation.navigate('Main', { screen: 'Home' }); // Navegar al MainScreen
+    navigation.navigate('Main', { screen: 'Home' });
   };
 
   const goToRegister = () => {
@@ -38,8 +38,8 @@ export const LoginScreen = () => {
         await AsyncStorage.setItem('userId', JSON.stringify(response.user.id));
 
         setCredentials({
-          token: response.token, // Aquí corregido
-          user: response.user, // Esto incluye el ID del usuario
+          token: response.token,
+          user: response.user,
         });
         navigation.navigate('Main', { screen: 'Home' });
       } else {
@@ -65,6 +65,7 @@ export const LoginScreen = () => {
         placeholder="Tu email o nombre de usuario"
         value={email}
         onChangeText={setEmail}
+        autoCapitalize='none'
       />
       <TextInput
         style={styles.input}
@@ -72,6 +73,7 @@ export const LoginScreen = () => {
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        autoCapitalize='none'
       />
       <View style={styles.separator}></View>
       <Button title="Ingresar" onPress={handleLogin} />

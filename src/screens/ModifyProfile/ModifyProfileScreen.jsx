@@ -53,7 +53,7 @@ export const ModifyProfileScreen = () => {
               // Navegar a LoginScreen
               // Reemplaza 'LoginScreen' con el nombre de tu pantalla de inicio de sesión
               // (asegúrate de importar 'useNavigation' y tener acceso a la navegación)
-              navigation.navigate("LoginScreen");
+              navigation.navigate("Login");
             }, 500); // Cambia 2000 a la cantidad de milisegundos que desees
           },
         },
@@ -83,6 +83,7 @@ export const ModifyProfileScreen = () => {
           value={formData.email}
           onChangeText={(text) => handleInputChange("email", text)}
           style={styles.input}
+          autoCapitalize='none'
         />
       </View>
       <View>
@@ -92,6 +93,7 @@ export const ModifyProfileScreen = () => {
           value={formData.username}
           onChangeText={(text) => handleInputChange("username", text)}
           style={styles.input}
+          autoCapitalize='none'
         />
       </View>
       <View>
@@ -102,6 +104,7 @@ export const ModifyProfileScreen = () => {
           value={formData.password}
           onChangeText={(text) => handleInputChange("password", text)}
           style={styles.input}
+          autoCapitalize='none'
         />
       </View>
       <View>

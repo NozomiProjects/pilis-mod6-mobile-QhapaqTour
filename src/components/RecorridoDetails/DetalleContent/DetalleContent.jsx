@@ -1,22 +1,7 @@
 import { Text, View } from "react-native";
-import {
-  useFonts,
-  Poppins_400Regular,
-  Poppins_500Medium,
-  Poppins_600SemiBold,
-} from "@expo-google-fonts/poppins";
 import { styles } from "./DetalleContent.styles";
 
 export const DetalleContent = ({ item }) => {
-  let [fontsLoaded, fontError] = useFonts({
-    Poppins_400Regular,
-    Poppins_500Medium,
-    Poppins_600SemiBold
-  });
-
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
 
   return (
     <View style={styles.mainContent}>

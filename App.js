@@ -3,6 +3,8 @@ import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold, Poppins_800ExtraBold } from "@expo-google-fonts/poppins";
+import { Manjari_700Bold } from "@expo-google-fonts/manjari";
 import {
   LoginScreen,
   RecorridoDetailScreen,
@@ -18,19 +20,23 @@ import {
   FavoritesProvider,
 } from "./src/contexts/FavoritesContext";
 import { RegionProvider } from "./src/contexts/RegionContext";
-import { ModifyProfileNavigator } from './src/screens/ModifyProfile/ModifyProfileNavigator.jsx';
+import { ModifyProfileNavigator } from './src/screens/ModifyProfile/ModifyProfileNavigator';
 import { ReservasScreen } from "./src/screens/Reservas/ReservasScreen";
-/*import { GeneralScreen } from "./src/screens/General/GeneralScreen";
-import {DetalleScreen} from "./src/screens/Detalle/DetalleScreen";
-import {ComentariosScreen} from "./src/screens/Comentario/ComentariosScreen";
-*/
+import { NewReservaScreen } from "./src/screens/Reservas/NewReservaScreen";
 
 const ListStack = createNativeStackNavigator();
 export default function App() {
   const { setFavorites } = useContext(FavoritesContext);
+  let [fontsLoaded, fontError] = useFonts({
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_600SemiBold,
+    Poppins_800ExtraBold,
+    Manjari_700Bold
+  });
 
   useEffect(() => {
-    const getFavorites = async () => {
+    const loadData = async () => {
       try {
         const favoritesJSON = await AsyncStorage.getItem("favorites");
         if (favoritesJSON) {
@@ -40,8 +46,12 @@ export default function App() {
         console.error(error);
       }
     };
-    getFavorites();
+    loadData();
   }, []);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
 
   return (
     <>
@@ -51,15 +61,12 @@ export default function App() {
             <NavigationContainer>
               <ListStack.Navigator screenOptions={{ headerShown: false }}>
                 {/* Pantallas sin Tab */}
-                <ListStack.Screen name='LoginScreen' component={LoginScreen} />
+                <ListStack.Screen name='Login' component={LoginScreen} />
                 <ListStack.Screen name='Register' component={RegisterScreen} />
                 <ListStack.Screen name='ModifyProfile' component={ModifyProfileNavigator} />
                 <ListStack.Screen name='Reservas' component={ReservasScreen} />
+                <ListStack.Screen name='NewReserva' component={NewReservaScreen} />
                 <ListStack.Screen name='RecorridoDetail' component={RecorridoDetailScreen} />
-
-                {/* <ListStack.Screen name='General' component={GeneralScreen} />                 
-                <ListStack.Screen name='Detalle' component={DetalleScreen} /> 
-                <ListStack.Screen name='Comentarios' component={ComentariosScreen} />  */}
 
                 {/* Pantallas con Tab */}
                 <ListStack.Screen name="Main" component={MainStackScreen} />

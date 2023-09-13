@@ -38,13 +38,6 @@ export const login = async (data) => {
       await AsyncStorage.setItem('token', response.data.token.token);
       await AsyncStorage.setItem('userId', response.data.user.id.toString());
 
-      // Recuperar el token y el ID del usuario y verificar
-      const storedToken = await AsyncStorage.getItem('token');
-      const storedUserId = await AsyncStorage.getItem('userId');
-
-      // console.log('Token almacenado en AsyncStorage:', storedToken);
-      // console.log('ID de usuario almacenado en AsyncStorage:', storedUserId);
-
       return response.data;
     } else {
       console.error('Token no encontrado en la respuesta.');

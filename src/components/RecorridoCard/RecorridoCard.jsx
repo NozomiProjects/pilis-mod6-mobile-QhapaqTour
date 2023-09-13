@@ -1,13 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Text, Pressable, View, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Entypo, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import {
-  useFonts,
-  Poppins_400Regular,
-  Poppins_600SemiBold,
-} from "@expo-google-fonts/poppins";
 import { styles } from "./RecorridoCard.styles";
 import { COLORS } from "./../../utils/theme";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
@@ -18,10 +13,6 @@ export const RecorridoCard = ({ item }) => {
   const navigation = useNavigation();
   const [isFavorite, setIsFavorite] = useState(false);
   const { favorites, setFavorites } = useContext(FavoritesContext);
-  let [fontsLoaded, fontError] = useFonts({
-    Poppins_400Regular,
-    Poppins_600SemiBold,
-  });
 
   useEffect(() => {
     console.log("Inicial: ", favorites);
@@ -52,10 +43,6 @@ export const RecorridoCard = ({ item }) => {
       return item ? [...prev, item.id] : prev;
     });
   };
-
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
 
   return (
     <Pressable onPress={() => navigation.navigate("RecorridoDetail", { item })}>
@@ -93,11 +80,11 @@ export const RecorridoCard = ({ item }) => {
                 style={styles.itemImgGuia}
               />
               <Text style={styles.itemGuia}>
-                {item.username ? item.username : "Nombre no disponible"}
+                {item.nombre} {item.apellido}
               </Text>
             </View>
             <View style={styles.itemCalificacionContainer}>
-              <Entypo name="star" size={16} color={COLORS.primary} />
+              <Ionicons name="star" size={16} color={COLORS.primary} />
               <Text style={styles.itemCalificacion}>
                 {calculateRating(item.calificaciones) || 0}
               </Text>

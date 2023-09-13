@@ -13,6 +13,7 @@ export const SearchBar = ({ handleSearch, searchQuery }) => {
         style={styles.searchInput}
         onChangeText={handleSearch}
         value={searchQuery}
+        autoCapitalize='none'
       />
        <Ionicons name="md-search-outline" size={24} color={COLORS.primary} />
     </View>

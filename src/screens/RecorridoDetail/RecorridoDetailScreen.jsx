@@ -6,36 +6,22 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import { Ionicons, MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
-import {
-  useFonts,
-  Poppins_400Regular,
-  Poppins_500Medium,
-  Poppins_600SemiBold,
-} from "@expo-google-fonts/poppins";
-import { TresBtnCard } from "../../components/TresBtnCard/TresBtnCard";
+import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../utils/theme";
 import { calculateRating } from "../../utils/rating";
 import { styles } from "./RecorridoDetailScreen.styles";
-import { GeneralContent } from "../../components/GeneralContent/GeneralContent";
-import { DetalleContent } from "../../components/DetalleContent/DetalleContent";
-import { ComentarioContent } from "../../components/ComentarioContent/ComentarioContent";
+import {
+  GeneralContent,
+  DetalleContent,
+  ComentarioContent,
+} from "../../components/index";
 
 export const RecorridoDetailScreen = ({ route }) => {
   const { item } = route.params;
   const [activeButton, setActiveButton] = useState("button1");
-  let [fontsLoaded, fontError] = useFonts({
-    Poppins_400Regular,
-    Poppins_500Medium,
-    Poppins_600SemiBold
-  });
-
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
 
   return (
-    <ScrollView style={styles.container} nestedScrollEnabled={true}>
+    <ScrollView style={styles.container}>
       <View style={styles.headerContainer}>
         <ImageBackground
           source={{ uri: item.lugar.url }}
@@ -102,11 +88,9 @@ export const RecorridoDetailScreen = ({ route }) => {
         </TouchableOpacity>
       </View>
 
-      {/* <View style={styles.mainContent}> */}
-        {activeButton === 'button1' && <GeneralContent item={item} />}
-        {activeButton === 'button2' && <DetalleContent item={item} />}
-        {activeButton === 'button3' && <ComentarioContent item={item} />}
-      {/* </View> */}
+      {activeButton === "button1" && <GeneralContent item={item} />}
+      {activeButton === "button2" && <DetalleContent item={item} />}
+      {activeButton === "button3" && <ComentarioContent item={item} />}
     </ScrollView>
   );
 };

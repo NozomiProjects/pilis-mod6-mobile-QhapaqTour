@@ -1,11 +1,24 @@
 import { View, Image, Text, TouchableOpacity } from "react-native";
-import { styles } from "./GeneralContent.styles";
+import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
-import React from "react";
-import { COLORS } from "../../utils/theme";
-import { formatDuration } from "../../utils/format";
+import { styles } from "./GeneralContent.styles";
+import { COLORS } from "../../../utils/theme";
+import { formatDuration } from "../../../utils/format";
+import { useContext } from "react";
+import { UserContext } from "../../../contexts/UserContext";
 
 export const GeneralContent = ({ item }) => {
+  const { credentials } = useContext(UserContext)
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    if (credentials) {
+      navigation.navigate("NewReserva", { item })
+    } else {
+      navigation.navigate("Login")
+    }
+  }
+
   return (
     <>
       <View style={styles.mainContent}>
@@ -48,7 +61,7 @@ export const GeneralContent = ({ item }) => {
           <Text style={styles.priceValue}>${item.precio}</Text>
           <Text style={styles.priceTag}>/Por persona</Text>
         </View>
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <TouchableOpacity style={styles.button} onPress={handlePress}>
           <Text style={styles.buttonText}>Reservar</Text>
         </TouchableOpacity>
       </View>

@@ -1,25 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { Text, Pressable, View, Image } from "react-native";
-import {
-  useFonts,
-  Poppins_400Regular,
-  Poppins_600SemiBold,
-} from "@expo-google-fonts/poppins";
+import { Text, View, Image } from "react-native";
 import { styles } from "./ComentarioCard.styles";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 import { getRelativeTime } from "../../utils/format";
 import { COLORS } from "../../utils/theme";
 
 export const ComentarioCard = ({ item }) => {
-  let [fontsLoaded, fontError] = useFonts({
-    Poppins_400Regular,
-    Poppins_600SemiBold,
-  });
-
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
-
   return (
     <View style={styles.container}>
       <Image
