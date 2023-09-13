@@ -43,6 +43,7 @@ export const styles = StyleSheet.create({
     color: COLORS.primary,
   },
   commentInput: {
+    width: 280,
     borderColor: COLORS.secondary,
     borderWidth: 1,
     borderRadius: 12,

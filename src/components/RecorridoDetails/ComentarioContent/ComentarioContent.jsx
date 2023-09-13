@@ -4,42 +4,79 @@ import { useNavigation } from "@react-navigation/native";
 import { styles } from "./ComentarioContent.styles";
 import { ComentarioCard } from "../../ComentarioCard/ComentarioCard";
 import { ComentarioModal } from "../../ComentarioModal/ComentarioModal";
-import { getComentariosByRecorrido } from "../../../api/recorridos";
+import { createComentario, getComentariosByRecorrido } from "../../../api/recorridos";
 import { UserContext } from "../../../contexts/UserContext";
 
 export const ComentarioContent = ({ item }) => {
   const { credentials } = useContext(UserContext);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
   const navigation = useNavigation();
 
-  const toggleModal = () => {
+  // const toggleModal = () => {
+  //   if (!credentials?.token) {
+  //     navigation.navigate("Login");
+  //   }
+
+  //   setIsVisible((prev) => !prev);
+  // };
+
+  const openModal = () => {
     if (!credentials?.token) {
       navigation.navigate("Login");
     }
 
-    setModalVisible((prev) => !prev);
+    setIsVisible(true);
+  }
+
+  const closeModal = () => setIsVisible(false);
+
+  const handleCancel = () => {
+    setRating(0);
+    setComment("");
+    closeModal();
   };
 
-  const closeModal = () => setModalVisible(false);
+  const handlePublish = () => {
+    const body = {
+      comentario: comment,
+      nota: rating,
+    };
+    createComentario(item.id, body, credentials.token.token)
+    .then(res => console.log(res))
+    .catch(error => console.error(error))
+    .finally(() => {
+      setRating(0);
+      setComment("");
+      closeModal();
+    })
+  };
 
   useEffect(() => {
+    if (isVisible) return
     setIsLoading(true);
     getComentariosByRecorrido(item.id)
       .then((res) => setData(res))
       .catch((error) => console.error(error))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [isVisible]);
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={toggleModal}>
+      <TouchableOpacity style={styles.button} onPress={openModal}>
         <Text style={styles.textButton}>Escribe una opinión</Text>
       </TouchableOpacity>
       <ComentarioModal
-        visible={modalVisible}
-        onClose={closeModal}
+        visible={isVisible}
+        handlePublish={handlePublish}
+        handleCancel={handleCancel}
+        setComment={setComment}
+        setRating={setRating}
+        comment={comment}
+        rating={rating}
         item={item}
       />
 

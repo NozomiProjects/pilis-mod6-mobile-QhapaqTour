@@ -5,34 +5,34 @@ import { Ionicons } from "@expo/vector-icons";
 import { UserContext } from "../../contexts/UserContext";
 import { createComentario } from "../../api/recorridos";
 
-export const ComentarioModal = ({ visible, onClose, item }) => {
-  const { credentials } = useContext(UserContext);
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
+export const ComentarioModal = ({ item, visible, comment, rating, setComment, setRating, handlePublish, handleCancel }) => {
+  // const { credentials } = useContext(UserContext);
+  // const [rating, setRating] = useState(0);
+  // const [comment, setComment] = useState("");
 
-  const handleStarClick = (starIndex) => setRating(starIndex);
+  // const handleStarClick = (starIndex) => setRating(starIndex);
 
-  const handleCommentChange = (text) => setComment(text);
+  // const handleCommentChange = (text) => setComment(text);
 
-  const handleCancel = () => {
-    setRating(0);
-    setComment("");
-    onClose();
-  };
+  // const handleCancel = () => {
+  //   setRating(0);
+  //   setComment("");
+  //   onClose();
+  // };
 
-  const handlePublish = () => {
-    const data = {
-      comentario: comment,
-      nota: rating,
-    };
-    createComentario(item.id, data, credentials.token.token)
-    .then(res => console.log(res))
-    .catch(error => console.error(error))
+  // const handlePublish = () => {
+  //   const data = {
+  //     comentario: comment,
+  //     nota: rating,
+  //   };
+  //   createComentario(item.id, data, credentials.token.token)
+  //   .then(res => console.log(res))
+  //   .catch(error => console.error(error))
     
-    setRating(0);
-    setComment("");
-    onClose();
-  };
+  //   setRating(0);
+  //   setComment("");
+  //   onClose();
+  // };
 
   return (
     <Modal transparent={true} visible={visible} animationType="fade">
@@ -44,7 +44,7 @@ export const ComentarioModal = ({ visible, onClose, item }) => {
             {[1, 2, 3, 4, 5].map((index) => (
               <TouchableOpacity
                 key={index}
-                onPress={() => handleStarClick(index)}
+                onPress={() => setRating(index)}
               >
                 <Ionicons
                   name={index <= rating ? "star" : "star-outline"}
@@ -55,7 +55,7 @@ export const ComentarioModal = ({ visible, onClose, item }) => {
           </View>
           <TextInput
             placeholder="Agrega un comentario..."
-            onChangeText={handleCommentChange}
+            onChangeText={setComment}
             value={comment}
             multiline
             numberOfLines={7}
