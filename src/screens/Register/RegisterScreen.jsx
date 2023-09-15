@@ -1,5 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
 import {
+  Alert,
   ImageBackground,
   SafeAreaView,
   Text,
@@ -16,6 +17,7 @@ import { ModalInfo } from "../../components/ModalInfo/ModalInfo";
 export const RegisterScreen = () => {
   const navigation = useNavigation();
   const [isVisible, setIsVisible] = useState(false);
+  const [error, setError] = useState(null);
   const {
     control,
     handleSubmit,
@@ -36,7 +38,12 @@ export const RegisterScreen = () => {
       .then((res) => {
         setIsVisible(true);
       })
-      .catch((err) => console.warn(err));
+      .catch((error) =>
+        Alert.alert(
+          "Error",
+          error.message
+        )
+      );
   };
 
   const handleClose = () => {

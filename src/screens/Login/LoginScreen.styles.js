@@ -1,44 +1,80 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import { COLORS } from "../../utils/theme";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
-    alignItems: "center",
-    justifyContent: "center",
+    marginTop: StatusBar.currentHeight,
+  },
+  bgImage: {
+    resizeMode: 'cover',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'space-between',
+  },
+  titleContainer: {
+    flex: 1,
+    justifyContent: 'center',
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 16,
+    fontSize: 34,
+    fontFamily: 'Manjari_700Bold',
+    color: COLORS.white,
     textAlign: 'center',
   },
-  subTitle: {
-    fontSize: 24,
-    marginBottom: 10,
+  content: {
+    flex: 2.8,
   },
-
+  whiteBackground: {
+    height: '100%',
+    justifyContent: 'center',
+    gap: 20,
+    paddingHorizontal: 20
+  },
+  subTitle: {
+    fontSize: 28,
+    fontFamily: 'Poppins_500Medium',
+    textAlign: 'center',
+  },
   input: {
-    width: 250,
-    height: 40,
     borderColor: COLORS.secondary,
     borderWidth: 1,
     borderRadius: 12,
-    marginVertical: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    fontSize: 16,
+    fontFamily: 'Poppins_400Regular'
   },
-
-  separator: {
-    height: 20, // Ajusta la altura según tus preferencias
+  errorText: {
+    color: COLORS.danger,
+    fontFamily: 'Poppins_400Regular'
   },
   registerContainer: {
-    display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5
+    justifyContent: 'center',
+    gap: 5,
+  },
+  registerContainerText: {
+    fontFamily: 'Poppins_400Regular',
+    fontSize: 16,
+  },
+  primaryText: {
+    color: COLORS.primary,
+    fontFamily: 'Poppins_400Regular',
+    fontSize: 16
+  },
+  button: {
+    width: 250,
+    backgroundColor: COLORS.primary,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 12,
+    alignSelf: 'center'
   },
   buttonText: {
-    color: COLORS.primary
-  }
+    color: COLORS.white,
+    fontSize: 16,
+    fontFamily: 'Poppins_600SemiBold',
+    textAlign: 'center'
+  },
 });

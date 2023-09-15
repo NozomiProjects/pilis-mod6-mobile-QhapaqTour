@@ -1,38 +1,34 @@
-import React, { useState, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { UserContext } from '../../contexts/UserContext';
 import { COLORS } from '../../utils/theme';
 import { getUserInfo } from '../../api/usuarios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native'; // Importa el hook useNavigation
+import { useNavigation } from '@react-navigation/native';
 
 export const WelcomeScreen = () => {
-  const { currentUser, setCurrentUser, setCredentials } = useContext(UserContext);
-  const navigation = useNavigation(); // Obtiene el objeto de navegación
+  const { currentUser, setCurrentUser, credentials, setCredentials } = useContext(UserContext);
+  const navigation = useNavigation();
 
   const handleLogout = async () => {
     try {
-      // Limpia los datos almacenados en AsyncStorage
       await AsyncStorage.removeItem('token');
-      await AsyncStorage.removeItem('userId');
-      await AsyncStorage.removeItem('userEmail');
+      await AsyncStorage.removeItem('user');
 
-      // Limpia los datos en el contexto
       setCredentials(null);
       setCurrentUser(null);
     } catch (error) {
-      console.error('Error during logout:', error);
+      console.error('Error durante el cierre de sesión:', error);
     }
   };
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Obtiene el ID del usuario desde AsyncStorage
-        const userId = await AsyncStorage.getItem('userId');
-        if (userId) {
-          // Obtiene los datos del usuario utilizando el ID
-          const fetchedUserData = await getUserInfo(userId);
+        const userId = credentials.user.id
+        const token = credentials.token.token
+        if (userId && token) {
+          const fetchedUserData = await getUserInfo(userId, token);
           setCurrentUser(fetchedUserData);
         }
       } catch (error) {
@@ -43,24 +39,13 @@ export const WelcomeScreen = () => {
     fetchUserData();
   }, []);
 
-  const handleFavorites = () => {
-    // Navegar a la pantalla FavoritesScreen aquí.
-    navigation.navigate('Favorites');
-  };
-
-  const handleReservas = () => {
-    // Navegar a la pantalla ReservasScreen aquí.
-    navigation.navigate('Reservas');
-  };
-
-  const handleModificarPerfil = () => {
-    // Navegar a la pantalla de modificación de perfil (ModifyProfileScreen) aquí.
-    navigation.navigate('ModifyProfile');
-  };
+  const handleNavigate = (to) => {
+    navigation.navigate(to);
+  }
 
   return (
     <View style={styles.container}>
-      {currentUser ? ( // Verifica si userData se ha cargado
+      {currentUser ? (
         <>
           <Text>¡Bienvenido/a, {currentUser.nombre || 'Usuario'}!</Text>
           <Text>Correo electrónico: {currentUser.email || 'No disponible'}</Text>
@@ -68,13 +53,13 @@ export const WelcomeScreen = () => {
       ) : (
         <Text>Cargando datos...</Text>
       )}
-      <TouchableOpacity onPress={handleFavorites} style={styles.button}>
+      <TouchableOpacity onPress={() => handleNavigate('Favorites')} style={styles.button}>
         <Text style={styles.buttonText}>Ir a Favoritos</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleReservas} style={styles.button}>
+      <TouchableOpacity onPress={() => handleNavigate('Reservas')} style={styles.button}>
         <Text style={styles.buttonText}>Ir a Reservas</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleModificarPerfil} style={styles.button}>
+      <TouchableOpacity onPress={() => handleNavigate('ModifyProfile')} style={styles.button}>
         <Text style={styles.buttonText}>Modificar perfil</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleLogout} style={styles.button}>

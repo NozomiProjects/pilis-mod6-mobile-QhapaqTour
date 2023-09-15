@@ -1,39 +1,8 @@
-import React, { useContext, useState } from "react";
 import { Modal, View, Text, TouchableOpacity, TextInput } from "react-native";
 import { styles } from "./ComentarioModal.styles";
 import { Ionicons } from "@expo/vector-icons";
-import { UserContext } from "../../contexts/UserContext";
-import { createComentario } from "../../api/recorridos";
 
 export const ComentarioModal = ({ item, visible, comment, rating, setComment, setRating, handlePublish, handleCancel }) => {
-  // const { credentials } = useContext(UserContext);
-  // const [rating, setRating] = useState(0);
-  // const [comment, setComment] = useState("");
-
-  // const handleStarClick = (starIndex) => setRating(starIndex);
-
-  // const handleCommentChange = (text) => setComment(text);
-
-  // const handleCancel = () => {
-  //   setRating(0);
-  //   setComment("");
-  //   onClose();
-  // };
-
-  // const handlePublish = () => {
-  //   const data = {
-  //     comentario: comment,
-  //     nota: rating,
-  //   };
-  //   createComentario(item.id, data, credentials.token.token)
-  //   .then(res => console.log(res))
-  //   .catch(error => console.error(error))
-    
-  //   setRating(0);
-  //   setComment("");
-  //   onClose();
-  // };
-
   return (
     <Modal transparent={true} visible={visible} animationType="fade">
       <View style={styles.modalContainer}>

@@ -4,25 +4,44 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SIGNUP_URL = `${api.server}/signup`
 const SIGNIN_URL = `${api.server}/signin`
-const USER_URL = (userId) => `${api.server}/usuarios/${userId}`;
+const USERS_URL = `${api.server}/usuarios`;
+
+// export const signUp = async (data) => {
+//   try {
+//     const response = await fetch(SIGNUP_URL, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({ ...data, rol: 'CLIENTE' })
+//     })
+//     const result = await response.json()
+//     if (!response.ok) {
+//       throw result
+//     }
+//     return result
+//   } catch (error) {
+//     throw error
+//   }
+// }
 
 export const signUp = async (data) => {
   try {
-    const response = await fetch(SIGNUP_URL, {
-      method: 'POST',
+    const response = await axios.post(SIGNUP_URL, { ...data, rol: 'CLIENTE' }, {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ ...data, rol: 'CLIENTE' })
     })
-    const result = await response.json()
-    if (!response.ok) {
-      throw result
-    }
-    return result
+
+    return response
   } catch (error) {
-    console.error(error)
-    throw error
+    if (error.response) {
+      throw error.response.data;
+    } else if (error.request) {
+      throw new Error('No se recibió respuesta del servidor.');
+    } else {
+      throw new Error("Hubo un error en la autenticación. Por favor, intenta nuevamente.")    
+    }
   }
 }
 
@@ -35,8 +54,8 @@ export const login = async (data) => {
     });
 
     if (response.data.token) {
-      await AsyncStorage.setItem('token', response.data.token.token);
-      await AsyncStorage.setItem('userId', response.data.user.id.toString());
+      await AsyncStorage.setItem('token', JSON.stringify(response.data.token));
+      await AsyncStorage.setItem('user', JSON.stringify(response.data.user));
 
       return response.data;
     } else {
@@ -44,30 +63,26 @@ export const login = async (data) => {
       throw new Error('Token no encontrado en la respuesta.');
     }
   } catch (error) {
-    throw error;
+      if (error.response) {
+        throw error.response.data;
+      } else if (error.request) {
+        throw new Error('No se recibió respuesta del servidor.');
+      } else {
+        throw new Error("Hubo un error en la autenticación. Por favor, intenta nuevamente.")    
+      }
   }
 };
 
-//codigo nuevo
-export const getUserInfo = async (userId) => {
+export const getUserInfo = async (userId, token) => {
   try {
-    // Obtener el token y el userId de AsyncStorage
-    const token = await AsyncStorage.getItem('token');
-    const storedUserId = await AsyncStorage.getItem('userId');
-
-    // Verificar si se encontró el token y el userId
-    if (!token || !userId) {
-      throw new Error('Token o userId no encontrados en AsyncStorage');
-    }
-
-    const response = await axios.get(`${USER_URL(storedUserId)}`, { // Usar la función USER_URL con el userId almacenado
+    const response = await axios.get(`${USERS_URL}/${userId}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
       },
     });
 
-    console.log('Respuesta del backend:', response.data); // Agregar este console.log para ver la respuesta del backend
+    // console.log('Respuesta del backend:', response.data);
 
     if (response.status !== 200) {
       throw new Error('No se pudo obtener la información del usuario');
@@ -85,7 +100,7 @@ export const getUserInfo = async (userId) => {
 export const updateUserInfo = async (userId, formData, token) => {
   try {
     // Realizar la solicitud PUT para actualizar la información del usuario
-    const response = await axios.put(USER_URL(userId), formData, {
+    const response = await axios.put(`${USERS_URL}/${userId}`, formData, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,

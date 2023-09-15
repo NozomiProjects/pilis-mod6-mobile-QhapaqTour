@@ -1,11 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { UserContext } from "../../contexts/UserContext";
-import { COLORS } from "../../utils/theme";
 import { updateUserInfo } from "../../api/usuarios";
 import { styles } from "./ModifyProfileScreen.styles";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
 
 export const ModifyProfileScreen = () => {
   const { currentUser, credentials } = useContext(UserContext);
@@ -31,34 +30,29 @@ export const ModifyProfileScreen = () => {
   const handleSaveChanges = async () => {
     try {
       // Obtener el ID del usuario desde AsyncStorage
-      const userId = await AsyncStorage.getItem("userId");
+      // const userId = await AsyncStorage.getItem("userId");
 
       // Realizar la solicitud PUT para actualizar la información del usuario
-      const updatedUser = await updateUserInfo(
-        userId,
-        formData,
-        credentials.token.token
-      );
+      // const updatedUser = await updateUserInfo(
+      //   userId,
+      //   formData,
+      //   credentials.token.token
+      // );
+      const userId = credentials.user.id;
+      const token = credentials.token.token
+      await updateUserInfo(userId, formData, token);
 
-      // Actualiza el contexto con los nuevos datos del usuario
-      // setCurrentUser(updatedUser);
-
-      // Muestra una alerta indicando que el usuario ha sido modificado con éxito
       Alert.alert("Éxito", "Usuario modificado con éxito.", [
         {
           text: "OK",
           onPress: () => {
             // Programar la redirección a LoginScreen después de 2 segundos (2000 milisegundos)
             setTimeout(() => {
-              // Navegar a LoginScreen
-              // Reemplaza 'LoginScreen' con el nombre de tu pantalla de inicio de sesión
-              // (asegúrate de importar 'useNavigation' y tener acceso a la navegación)
               navigation.navigate("Login");
-            }, 500); // Cambia 2000 a la cantidad de milisegundos que desees
+            }, 500);
           },
         },
       ]);
-      // Puedes agregar un mensaje de éxito o redireccionar a otra pantalla aquí
     } catch (error) {
       console.error(
         "Error al actualizar la información del usuario:",
@@ -83,7 +77,7 @@ export const ModifyProfileScreen = () => {
           value={formData.email}
           onChangeText={(text) => handleInputChange("email", text)}
           style={styles.input}
-          autoCapitalize='none'
+          autoCapitalize="none"
         />
       </View>
       <View>
@@ -93,7 +87,7 @@ export const ModifyProfileScreen = () => {
           value={formData.username}
           onChangeText={(text) => handleInputChange("username", text)}
           style={styles.input}
-          autoCapitalize='none'
+          autoCapitalize="none"
         />
       </View>
       <View>
@@ -104,7 +98,7 @@ export const ModifyProfileScreen = () => {
           value={formData.password}
           onChangeText={(text) => handleInputChange("password", text)}
           style={styles.input}
-          autoCapitalize='none'
+          autoCapitalize="none"
         />
       </View>
       <View>
