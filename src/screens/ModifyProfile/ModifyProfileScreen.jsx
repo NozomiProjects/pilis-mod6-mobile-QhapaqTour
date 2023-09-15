@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
+import { Image, Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { UserContext } from "../../contexts/UserContext";
@@ -29,17 +29,8 @@ export const ModifyProfileScreen = () => {
 
   const handleSaveChanges = async () => {
     try {
-      // Obtener el ID del usuario desde AsyncStorage
-      // const userId = await AsyncStorage.getItem("userId");
-
-      // Realizar la solicitud PUT para actualizar la información del usuario
-      // const updatedUser = await updateUserInfo(
-      //   userId,
-      //   formData,
-      //   credentials.token.token
-      // );
       const userId = credentials.user.id;
-      const token = credentials.token.token
+      const token = credentials.token.token;
       await updateUserInfo(userId, formData, token);
 
       Alert.alert("Éxito", "Usuario modificado con éxito.", [
@@ -69,9 +60,9 @@ export const ModifyProfileScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Modificar perfil</Text>
-      <View>
-        <Text>Email</Text>
+      <Image source={{ uri: "https://i.pravatar.cc" }} style={styles.avatar} />
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Email</Text>
         <TextInput
           placeholder="Email"
           value={formData.email}
@@ -80,8 +71,8 @@ export const ModifyProfileScreen = () => {
           autoCapitalize="none"
         />
       </View>
-      <View>
-        <Text>Username</Text>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Username</Text>
         <TextInput
           placeholder="Username"
           value={formData.username}
@@ -90,8 +81,8 @@ export const ModifyProfileScreen = () => {
           autoCapitalize="none"
         />
       </View>
-      <View>
-        <Text>Nuevo Password</Text>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Nuevo Password</Text>
         <TextInput
           placeholder="Nuevo Password"
           secureTextEntry
@@ -101,8 +92,8 @@ export const ModifyProfileScreen = () => {
           autoCapitalize="none"
         />
       </View>
-      <View>
-        <Text>Apellido</Text>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Apellido</Text>
         <TextInput
           placeholder="Apellido"
           value={formData.apellido}
@@ -110,8 +101,8 @@ export const ModifyProfileScreen = () => {
           style={styles.input}
         />
       </View>
-      <View>
-        <Text>Nombre</Text>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Nombre</Text>
         <TextInput
           placeholder="Nombre"
           value={formData.nombre}
@@ -119,8 +110,8 @@ export const ModifyProfileScreen = () => {
           style={styles.input}
         />
       </View>
-      <View>
-        <Text>DNI</Text>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>DNI</Text>
         <TextInput
           placeholder="DNI"
           value={formData.dni}
@@ -129,7 +120,7 @@ export const ModifyProfileScreen = () => {
         />
       </View>
       <TouchableOpacity onPress={handleSaveChanges} style={styles.button}>
-        <Text style={styles.buttonText}>Guardar Cambios</Text>
+        <Text style={styles.buttonText}>Guardar cambios</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,75 +1,61 @@
-import axios from 'axios';
-import { api } from "./api"
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { api } from "./api";
 
-const SIGNUP_URL = `${api.server}/signup`
-const SIGNIN_URL = `${api.server}/signin`
+const SIGNUP_URL = `${api.server}/signup`;
+const SIGNIN_URL = `${api.server}/signin`;
 const USERS_URL = `${api.server}/usuarios`;
-
-// export const signUp = async (data) => {
-//   try {
-//     const response = await fetch(SIGNUP_URL, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({ ...data, rol: 'CLIENTE' })
-//     })
-//     const result = await response.json()
-//     if (!response.ok) {
-//       throw result
-//     }
-//     return result
-//   } catch (error) {
-//     throw error
-//   }
-// }
 
 export const signUp = async (data) => {
   try {
-    const response = await axios.post(SIGNUP_URL, { ...data, rol: 'CLIENTE' }, {
+    const body = { ...data, rol: "CLIENTE" };
+    const response = await axios.post(SIGNUP_URL, body, {
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-    })
+    });
 
-    return response
+    return response;
   } catch (error) {
     if (error.response) {
       throw error.response.data;
     } else if (error.request) {
-      throw new Error('No se recibió respuesta del servidor.');
+      throw new Error("No se recibió respuesta del servidor.");
     } else {
-      throw new Error("Hubo un error en la autenticación. Por favor, intenta nuevamente.")    
+      throw new Error(
+        "Hubo un error en la autenticación. Por favor, intenta nuevamente."
+      );
     }
   }
-}
+};
 
-export const login = async (data) => {
+export const login = async (body) => {
   try {
-    const response = await axios.post(SIGNIN_URL, data, {
+    const response = await axios.post(SIGNIN_URL, body, {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
 
     if (response.data.token) {
-      await AsyncStorage.setItem('token', JSON.stringify(response.data.token));
-      await AsyncStorage.setItem('user', JSON.stringify(response.data.user));
+      await AsyncStorage.setItem("token", JSON.stringify(response.data.token));
+      await AsyncStorage.setItem("user", JSON.stringify(response.data.user));
 
       return response.data;
     } else {
-      console.error('Token no encontrado en la respuesta.');
-      throw new Error('Token no encontrado en la respuesta.');
+      console.error("Token no encontrado en la respuesta.");
+      throw new Error("Token no encontrado en la respuesta.");
     }
   } catch (error) {
-      if (error.response) {
-        throw error.response.data;
-      } else if (error.request) {
-        throw new Error('No se recibió respuesta del servidor.');
-      } else {
-        throw new Error("Hubo un error en la autenticación. Por favor, intenta nuevamente.")    
-      }
+    if (error.response) {
+      throw error.response.data;
+    } else if (error.request) {
+      throw new Error("No se recibió respuesta del servidor.");
+    } else {
+      throw new Error(
+        "Hubo un error en la autenticación. Por favor, intenta nuevamente."
+      );
+    }
   }
 };
 
@@ -77,45 +63,49 @@ export const getUserInfo = async (userId, token) => {
   try {
     const response = await axios.get(`${USERS_URL}/${userId}`, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
 
-    // console.log('Respuesta del backend:', response.data);
-
     if (response.status !== 200) {
-      throw new Error('No se pudo obtener la información del usuario');
+      throw new Error("No se pudo obtener la información del usuario");
     }
 
     return response.data;
   } catch (error) {
-    console.error('Error al obtener información del usuario:', error);
-    throw error;
+    if (error.response) {
+      throw error.response.data;
+    } else if (error.request) {
+      throw new Error("No se recibió respuesta del servidor.");
+    } else {
+      throw new Error("Error al obtener información del usuario");
+    }
   }
 };
 
-
-// Nueva función para actualizar la información del usuario
-export const updateUserInfo = async (userId, formData, token) => {
+export const updateUserInfo = async (userId, body, token) => {
   try {
-    // Realizar la solicitud PUT para actualizar la información del usuario
-    const response = await axios.put(`${USERS_URL}/${userId}`, formData, {
+    const response = await axios.put(`${USERS_URL}/${userId}`, body, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
 
     // Verificar si la solicitud fue exitosa
     if (response.status !== 204) {
-      throw new Error('No se pudo actualizar la información del usuario');
+      throw new Error("No se pudo actualizar la información del usuario");
     }
 
-    // Devolver los datos actualizados del usuario
     return response.data;
   } catch (error) {
-    console.error('Error al actualizar la información del usuario:', error);
-    throw error;
+    if (error.response) {
+      throw error.response.data;
+    } else if (error.request) {
+      throw new Error("No se recibió respuesta del servidor.");
+    } else {
+      throw new Error("Error al actualizar la información del usuario");
+    }
   }
 };

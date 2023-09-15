@@ -4,50 +4,49 @@ import { COLORS } from "../../utils/theme";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.tertiary,
     alignItems: "center",
     justifyContent: "center",
+    gap: 20
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 16,
-    textAlign: "center",
-  },
-  subTitle: {
-    fontSize: 24,
-    marginBottom: 10,
+  avatar: {
+    width: 80,
+    height: 80,
+    resizeMode: "cover",
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: COLORS.white,
   },
 
+  inputContainer: {
+    gap: 2,
+  },
+  label: {
+    fontSize: 16,
+    fontFamily: 'Poppins_400Regular',
+    color: COLORS.secondary,
+  },
   input: {
-    width: 250,
+    width: 300,
     height: 40,
-    borderColor: COLORS.secondary,
+    backgroundColor: COLORS.white,
+    borderColor: COLORS.grey,
     borderWidth: 1,
     borderRadius: 12,
-    marginVertical: 10,
     paddingHorizontal: 10,
+    fontFamily: 'Poppins_400Regular',
   },
-
-  separator: {
-    height: 20, // Ajusta la altura según tus preferencias
-  },
-  registerContainer: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 5,
-  },
+  
   button: {
     backgroundColor: COLORS.primary,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 12,
-    marginTop: 24,
     alignItems: "center",
   },
   buttonText: {
     color: COLORS.white,
-    fontSize: 18,
+    fontSize: 16,
+    fontFamily: 'Poppins_500Medium',
   },
 });

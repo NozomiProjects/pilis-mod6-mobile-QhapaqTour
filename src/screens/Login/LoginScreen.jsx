@@ -43,6 +43,7 @@ export const LoginScreen = () => {
     }
     try {
       const response = await login(data);
+      console.log(response)
 
       setCredentials({
         token: response.token,

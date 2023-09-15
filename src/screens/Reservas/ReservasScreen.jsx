@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Text, Image } from 'react-native';
-import { styles } from './ReservasScreen.styles';
-import { myReservas } from '../../api/reserva'; // Importa la función myReservas
+import React, { useContext, useEffect, useState } from "react";
+import { View, ScrollView, Text } from "react-native";
+import { styles } from "./ReservasScreen.styles";
+import { myReservas } from "../../api/reservas";
+import { UserContext } from "../../contexts/UserContext";
 
 export const ReservasScreen = () => {
-
-  const [reservas, setReservas] = useState([]); // Estado para almacenar las reservas
+  const { credentials } = useContext(UserContext);
+  const [reservas, setReservas] = useState([]);
 
   useEffect(() => {
-    // Aquí realizas la solicitud a myReservas cuando el componente se monte
-    async function fetchReservas() {
+    const fetchReservas = async () => {
       try {
-        const reservas = await myReservas();
-        console.log('Reservas del usuario:', reservas);
-        // Actualiza el estado o muestra las reservas en la pantalla
+        const token = credentials.token.token;
+        const reservas = await myReservas(token);
+        console.log("Reservas del usuario:", reservas);
         setReservas(reservas);
       } catch (error) {
-        console.error('Error al obtener las reservas:', error);
+        console.error("Error al obtener las reservas:", error);
       }
-    }
+    };
 
     fetchReservas();
-  }, []); // El segundo argumento [] asegura que esto solo se ejecute una vez cuando el componente se monte
+  }, []);
 
   return (
     <ScrollView style={styles.container}>
@@ -29,7 +29,13 @@ export const ReservasScreen = () => {
         <Text>ReservasScreen</Text>
         {/* Mapea las reservas y muestra los datos relevantes */}
         {reservas.map((reserva, index) => (
-          <View key={reserva.id} style={[styles.reservaItem, index !== reservas.length - 1 && styles.reservaSeparator]}>
+          <View
+            key={reserva.id}
+            style={[
+              styles.reservaItem,
+              index !== reservas.length - 1 && styles.reservaSeparator,
+            ]}
+          >
             <Text>Nombre del lugar: {reserva.nombre_lugar}</Text>
             <Text>Localidad: {reserva.nombre_localidad}</Text>
             <Text>Región: {reserva.nombre_region}</Text>

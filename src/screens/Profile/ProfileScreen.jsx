@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from "react-native";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { LoginScreen } from "../Login/LoginScreen";
@@ -13,12 +12,3 @@ export const ProfileScreen = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
