@@ -24,4 +24,10 @@ export const styles = StyleSheet.create({
   content: {
     padding: 20,
   },
+  text: {
+    fontFamily: "Poppins_500Medium",
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 30
+  }
 });

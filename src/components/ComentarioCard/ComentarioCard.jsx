@@ -8,7 +8,7 @@ export const ComentarioCard = ({ item }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("./../../../assets/images/puna.jpg")}
+        source={{uri: `https://ui-avatars.com/api/?name=${item.nombre}+${item.apellido}`}}
         style={styles.profileImage}
       />
       <View style={styles.rightColumn}>

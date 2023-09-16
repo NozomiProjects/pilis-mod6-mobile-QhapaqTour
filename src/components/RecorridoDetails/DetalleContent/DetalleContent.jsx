@@ -3,7 +3,6 @@ import { styles } from "./DetalleContent.styles";
 import { MapComponent } from "./Map";
 
 export const DetalleContent = ({ item }) => {
-  console.log(item);
   return (
     <View style={styles.mainContent}>
       <View style={styles.padding}>

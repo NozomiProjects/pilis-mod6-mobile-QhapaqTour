@@ -28,6 +28,7 @@ export const ReservasScreen = () => {
       <View style={styles.header}>
         <Text style={styles.title}>Mis reservas</Text>
       </View>
+      {reservas.length > 0 ?
       <FlatList
         data={reservas}
         renderItem={({ item }) => (
@@ -39,6 +40,8 @@ export const ReservasScreen = () => {
         keyExtractor={(item) => item.id}
         style={styles.content}
       />
+      :<Text style={styles.text}>Aún no has realizado reservas.</Text>
+      }
     </SafeAreaView>
   );
 };
