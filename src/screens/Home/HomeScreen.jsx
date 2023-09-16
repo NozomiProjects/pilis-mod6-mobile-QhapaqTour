@@ -1,12 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Image, Pressable, SafeAreaView, Text, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "./HomeScreen.styles";
 import { RecorridoList } from "../../components/RecorridoList/RecorridoList";
 import { getRecorridos } from "../../api/recorridos";
 import { RegionContext } from "../../contexts/RegionContext";
+import { RecorridosContext } from "../../contexts/RecorridosContext";
+import { FavoritesContext } from "../../contexts/FavoritesContext";
 
 export const HomeScreen = ({ navigation }) => {
-  const [recorridos, setRecorridos] = useState([]);
+  // const [recorridos, setRecorridos] = useState([]);
+  const { recorridos, setRecorridos } = useContext(RecorridosContext);
+  const { setFavorites } = useContext(FavoritesContext);
   const { setRegion } = useContext(RegionContext);
 
   const handleNavigate = (region) => {
@@ -15,11 +20,19 @@ export const HomeScreen = ({ navigation }) => {
   }
 
   useEffect(() => {
-    getRecorridos()
-      .then((res) => {
-        setRecorridos(res);
-      })
-      .catch((error) => console.warn(error));
+    const loadData = async () => {
+      try {
+          const response = await getRecorridos()
+          setRecorridos(response);
+          const favoritesJSON = await AsyncStorage.getItem("favorites");
+          if (favoritesJSON) {
+            setFavorites(JSON.parse(favoritesJSON));
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      loadData();
   }, []);
 
   return (

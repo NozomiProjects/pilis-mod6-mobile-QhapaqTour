@@ -2,8 +2,6 @@ import { Modal, View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./ModalInfo.styles";
 
 export const ModalInfo = ({ isVisible, content, handleClose }) => {
-//   const [isVisible, setIsVisible] = useState(false);
-
   return (
     <Modal transparent={true} visible={isVisible} animationType="fade">
       <View style={styles.modalContainer}>

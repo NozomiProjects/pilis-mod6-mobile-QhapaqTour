@@ -29,25 +29,15 @@ export const RecorridoDetailScreen = ({ route }) => {
         >
           <View style={styles.headerContent}>
             <View style={styles.topContainer}>
-              <View style={styles.leftContainer}>
-                <Ionicons
-                  name="star"
-                  size={24}
-                  color={COLORS.white}
-                  style={styles.starIcon}
-                />
-                <Text style={styles.rating}>
-                  {calculateRating(item.calificaciones) || 0}
-                </Text>
-              </View>
-              <View style={styles.rightContainer}>
-                <Ionicons
-                  name="md-heart-sharp"
-                  style={styles.rightHeartIcon}
-                  size={24}
-                  color={COLORS.white}
-                />
-              </View>
+              <Ionicons
+                name="star"
+                size={24}
+                color={COLORS.white}
+                style={styles.starIcon}
+              />
+              <Text style={styles.rating}>
+                {calculateRating(item.calificaciones) || 0}
+              </Text>
             </View>
             <View style={styles.bottomContainer}>
               <Text style={styles.itemTitle}>{item.lugar.nombre}</Text>

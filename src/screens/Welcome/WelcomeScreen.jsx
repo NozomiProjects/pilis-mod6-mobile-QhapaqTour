@@ -57,7 +57,7 @@ export const WelcomeScreen = () => {
         <>
           <View style={styles.header}>
             <Image
-              source={{ uri: "https://i.pravatar.cc" }}
+              source={{ uri: `https://ui-avatars.com/api/?name=${currentUser.nombre}+${currentUser.apellido}` }}
               style={styles.avatar}
             />
             <View style={styles.userInfo}>

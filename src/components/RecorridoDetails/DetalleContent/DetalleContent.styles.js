@@ -4,9 +4,12 @@ import { COLORS } from '../../../utils/theme';
 export const styles = StyleSheet.create({
   mainContent: {
     flex: 1,
-    padding: 20,
     gap: 20
   }, 
+  padding: {
+    padding: 20,
+    gap: 20,
+  },
   itemTitle: {
     fontSize: 18,
     fontFamily:'Poppins_600SemiBold',

@@ -4,13 +4,24 @@ import { COLORS } from "../../utils/theme";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.sec,
     marginTop: StatusBar.currentHeight,
   },
-
-  reservaSeparator: {
-    marginBottom: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+  header: {
+    height: 100,
+    paddingHorizontal: 20,
+    backgroundColor: COLORS.primary,
+    alignItems: "center",
+    justifyContent: "center",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontFamily: "Poppins_500Medium",
+    color: COLORS.white,
+  },
+  content: {
+    padding: 20,
   },
 });

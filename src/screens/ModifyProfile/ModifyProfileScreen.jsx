@@ -60,7 +60,7 @@ export const ModifyProfileScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri: "https://i.pravatar.cc" }} style={styles.avatar} />
+      <Image source={{ uri: `https://ui-avatars.com/api/?name=${currentUser.nombre}+${currentUser.apellido}` }} style={styles.avatar} />
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Email</Text>
         <TextInput

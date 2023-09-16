@@ -13,7 +13,6 @@ export const getRecorridos = async () => {
     
     return result
   } catch (error) {
-    console.error(error)
     throw error
   }
 }
@@ -29,7 +28,6 @@ export const getComentariosByRecorrido = async (idRecorrido) => {
     
     return result
   } catch (error) {
-    console.error(error)
     throw error
   }
 }
@@ -52,7 +50,6 @@ export const createComentario = async (idRecorrido, data, token) => {
     
     return result
   } catch (error) {
-    console.error(error)
     throw error
   }
 }

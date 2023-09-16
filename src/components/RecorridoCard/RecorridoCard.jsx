@@ -76,7 +76,7 @@ export const RecorridoCard = ({ item }) => {
           <View style={styles.itemRowContainer}>
             <View style={styles.itemRowContainer}>
               <Image
-                source={{ uri: item.lugar.url }}
+                source={{ uri: `https://ui-avatars.com/api/?name=${item.nombre}+${item.apellido}` }}
                 style={styles.itemImgGuia}
               />
               <Text style={styles.itemGuia}>

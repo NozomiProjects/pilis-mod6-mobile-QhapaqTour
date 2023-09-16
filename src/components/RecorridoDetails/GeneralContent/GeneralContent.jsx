@@ -23,7 +23,7 @@ export const GeneralContent = ({ item }) => {
     <>
       <View style={styles.mainContent}>
         <View style={styles.guideContainer}>
-          <Image source={{ uri: item.lugar.url }} style={styles.guideImage} />
+          <Image source={{ uri: `https://ui-avatars.com/api/?name=${item.nombre}+${item.apellido}` }} style={styles.guideImage} />
           <Text style={styles.guideName}>
             {item.nombre} {item.apellido}
           </Text>

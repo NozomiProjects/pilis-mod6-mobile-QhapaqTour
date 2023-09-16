@@ -4,25 +4,19 @@ import { useNavigation } from "@react-navigation/native";
 import { styles } from "./ComentarioContent.styles";
 import { ComentarioCard } from "../../ComentarioCard/ComentarioCard";
 import { ComentarioModal } from "../../ComentarioModal/ComentarioModal";
-import { createComentario, getComentariosByRecorrido } from "../../../api/recorridos";
+import { createComentario, getComentariosByRecorrido, getRecorridos } from "../../../api/recorridos";
 import { UserContext } from "../../../contexts/UserContext";
+import { RecorridosContext } from "../../../contexts/RecorridosContext";
 
 export const ComentarioContent = ({ item }) => {
   const { credentials } = useContext(UserContext);
+  const { setRecorridos } = useContext(RecorridosContext);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const navigation = useNavigation();
-
-  // const toggleModal = () => {
-  //   if (!credentials?.token) {
-  //     navigation.navigate("Login");
-  //   }
-
-  //   setIsVisible((prev) => !prev);
-  // };
 
   const openModal = () => {
     if (!credentials?.token) {
@@ -63,6 +57,12 @@ export const ComentarioContent = ({ item }) => {
       .catch((error) => console.error(error))
       .finally(() => setIsLoading(false));
   }, [isVisible]);
+
+  useEffect(() => {
+    getRecorridos()
+      .then((res) => setRecorridos(res))
+      .catch((error) => console.error(error))
+  }, []);
 
   return (
     <View style={styles.container}>

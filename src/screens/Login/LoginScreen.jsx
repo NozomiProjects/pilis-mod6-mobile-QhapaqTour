@@ -22,6 +22,7 @@ export const LoginScreen = () => {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ defaultValues: { email: "", password: "" } });
 
@@ -43,13 +44,13 @@ export const LoginScreen = () => {
     }
     try {
       const response = await login(data);
-      console.log(response)
 
       setCredentials({
         token: response.token,
         user: response.user,
       });
 
+      reset();
       navigation.navigate("Main", { screen: "Home" });
     } catch (error) {
       Alert.alert("Error", error.message);

@@ -6,21 +6,6 @@ const RESERVA_URL = `${api.server}/reserva`; // consulta de reservas por token
 
 export const createReserva = async (data, token) => {
   try {
-    // const response = await fetch(RESERVAS_URL, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    //   body: JSON.stringify(data),
-    // });
-    // const result = await response.json();
-
-    // if (!response.ok) {
-    //   throw result;
-    // }
-
-    // return result;
     const response = await axios.post(RESERVAS_URL, data, {
       headers: {
         "Content-Type": "application/json",
@@ -50,8 +35,6 @@ export const myReservas = async (token) => {
       },
     });
 
-    console.log({ response });
-
     if (response.status !== 200) {
       throw new Error("No se pudo obtener la cantidad de reservas");
     }
@@ -59,6 +42,25 @@ export const myReservas = async (token) => {
     return response.data;
   } catch (error) {
     console.error("Error al obtener la cantidad de reservas:", error);
+    throw error;
+  }
+};
+
+export const cancelReserva = async (reservaId) => {
+  try {
+    const response = await axios.delete(`${RESERVAS_URL}/${reservaId}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.status !== 204) {
+      throw new Error("No se pudo cancelar la reserva");
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error("Error al cancelar la reserva:", error);
     throw error;
   }
 };

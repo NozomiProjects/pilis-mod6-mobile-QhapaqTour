@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight,
     backgroundColor: COLORS.tertiary,
-    // position: "relative",
   },
   headerContainer: {
     height: 300,
@@ -20,10 +19,6 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   topContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  leftContainer: {
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
