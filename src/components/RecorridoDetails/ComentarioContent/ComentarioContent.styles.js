@@ -18,4 +18,8 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'Poppins_600SemiBold'
   },
+  text: {
+    fontSize: 16,
+    fontFamily: 'Poppins_600SemiBold'
+  }
 });

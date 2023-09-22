@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import {
   View,
-  SafeAreaView,
+  ScrollView,
   Text,
   TouchableOpacity
 } from "react-native";
@@ -106,7 +106,7 @@ export const NewReservaScreen = ({ route }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.mainContent}>
         <Text style={styles.title}>{item.lugar.nombre}</Text>
         <View style={styles.row}>
@@ -173,6 +173,6 @@ export const NewReservaScreen = ({ route }) => {
         content="¡Tu reserva se ha registrado con éxito!"
         handleClose={handleClose}
       />
-    </SafeAreaView>
+    </ScrollView>
   );
 };

@@ -81,11 +81,11 @@ export const ComentarioContent = ({ item }) => {
       />
 
       {isLoading ? (
-        <Text>Cargando</Text>
+        <Text style={styles.text}>Cargando</Text>
       ) : data.length > 0 ? (
         data.map((item) => <ComentarioCard key={item.id} item={item} />)
       ) : (
-        <Text>Se el primero en comentar</Text>
+        <Text style={styles.text}>Sé el primero en comentar</Text>
       )}
     </View>
   );

@@ -64,5 +64,6 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: COLORS.secondary,
     fontSize: 18,
+    fontFamily: "Poppins_500Medium",
   }
 });

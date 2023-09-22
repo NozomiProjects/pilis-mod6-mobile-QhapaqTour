@@ -34,7 +34,6 @@ export const WelcomeScreen = () => {
         const token = credentials.token.token;
         if (userId && token) {
           const fetchedUserData = await getUserInfo(userId, token);
-          console.log(fetchedUserData)
           setCurrentUser(fetchedUserData);
         }
       } catch (error) {

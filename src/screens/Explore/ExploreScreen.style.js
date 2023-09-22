@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   itemContainer: {
-    flexDirection: 'row', // Alineamos elementos en fila
+    flexDirection: 'row',
     width: Dimensions.get('screen').width - 20,
     borderRadius: 20,
     overflow: 'hidden',
@@ -23,22 +23,21 @@ export const styles = StyleSheet.create({
   itemRowContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between', // Alinea los elementos con espacio entre ellos
+    justifyContent: 'space-between',
     marginTop: 10,
   },
   itemRowContain: {
     flexDirection: 'row',
-    // alignItems: 'center',
     justifyContent: 'center',
     marginTop: 2,
   },
   itemRowRight: {
-    flexDirection: 'row', // Alinea los elementos en fila
+    flexDirection: 'row',
     alignItems: 'center',
   },
   itemTitulo:{
     fontSize:24,
-    fontWeight:'bold'
+    fontFamily: 'Poppins_600SemiBold'
   },
   itemImgTitulo:{    
     width: 73,
@@ -58,8 +57,8 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
   },
   itemTextContainer: {
-    marginLeft: '4%', // Espacio entre imagen y texto
-    width: '46%', // Ajustamos el ancho del contenedor de texto
+    marginLeft: '4%',
+    width: '46%',
   },
   itemLugar: {
     fontWeight: 'bold',
@@ -83,7 +82,7 @@ export const styles = StyleSheet.create({
     marginBottom: 1,
     marginHorizontal: 0,    
     fontSize: 12,
-    textAlign: 'right', // Alinea el texto a la derecha
+    textAlign: 'right',
   },
   itemGuia: {
     marginBottom: 1,
@@ -115,10 +114,7 @@ export const styles = StyleSheet.create({
   heartIcon: {
     position: 'absolute',
     backgroundColor: COLORS.white,
-    top: 5, // Ajusta la posición vertical del ícono del corazón
-    right: 5, // Ajusta la posición horizontal del ícono del corazón
-  },
-  heartIcon: {
-    // Estilos adicionales para el ícono del corazón si es necesario
+    top: 5,
+    right: 5,
   },
 });

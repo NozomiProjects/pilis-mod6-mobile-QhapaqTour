@@ -7,7 +7,8 @@ export const COLORS = {
     grey: '#D9D9D9',
     danger: '#FF2A51',
     text: '#263238',
-    inactive: '#A0A0A0'
+    inactive: '#A0A0A0',
+    layer: '#00000066'
 }
 
 export const SPACING = {
